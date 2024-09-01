@@ -42,6 +42,11 @@ public class JpaCategoryRepository implements CategoriesRepository {
     }
 
     @Override
+    public Optional<Category> findByName(String name) {
+        return repository.findByName(name);
+    }
+
+    @Override
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
