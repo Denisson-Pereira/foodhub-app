@@ -10,5 +10,7 @@ public interface CategoriesRepository {
     Category save(Category categories);
     List<Category> findAll();
     boolean existsByName(String name);
+    boolean existsById(Long id);
+    Optional<Category> findById(Long id);
 
 }

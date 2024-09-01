@@ -31,4 +31,14 @@ public class JpaCategoryRepository implements CategoriesRepository {
         return repository.findAll();
     }
 
+    @Override
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
+    }
+
+    @Override
+    public Optional<Category> findById(Long id) {
+        return repository.findById(id);
+    }
+
 }

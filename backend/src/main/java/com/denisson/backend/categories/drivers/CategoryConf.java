@@ -2,7 +2,8 @@ package com.denisson.backend.categories.drivers;
 
 import com.denisson.backend.categories.adapters.repository.CategoriesRepository;
 import com.denisson.backend.categories.useCases.CreateCategoryUseCase;
-import com.denisson.backend.categories.useCases.ReadAllCategoriesUseCase;
+import com.denisson.backend.categories.useCases.GetAllCategoriesUseCase;
+import com.denisson.backend.categories.useCases.GetCategoryByIdUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +15,12 @@ public class CategoryConf {
     }
 
     @Bean
-    public ReadAllCategoriesUseCase readAllCategoriesUseCase(CategoriesRepository categoriesRepository) {
-        return new ReadAllCategoriesUseCase((categoriesRepository));
+    public GetAllCategoriesUseCase readAllCategoriesUseCase(CategoriesRepository categoriesRepository) {
+        return new GetAllCategoriesUseCase(categoriesRepository);
+    }
+
+    @Bean
+    public GetCategoryByIdUseCase getCategoryByIdUseCase(CategoriesRepository categoriesRepository) {
+        return new GetCategoryByIdUseCase(categoriesRepository);
     }
 }

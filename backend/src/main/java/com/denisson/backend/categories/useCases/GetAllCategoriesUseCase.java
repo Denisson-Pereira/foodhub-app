@@ -5,10 +5,10 @@ import com.denisson.backend.categories.entities.Category;
 
 import java.util.List;
 
-public class ReadAllCategoriesUseCase {
+public class GetAllCategoriesUseCase {
     private final CategoriesRepository categoriesRepository;
 
-    public ReadAllCategoriesUseCase(CategoriesRepository categoriesRepository) {
+    public GetAllCategoriesUseCase(CategoriesRepository categoriesRepository) {
         this.categoriesRepository = categoriesRepository;
     }
 
