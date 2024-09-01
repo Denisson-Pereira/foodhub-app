@@ -1,4 +1,4 @@
-package com.denisson.backend.categories.adapters.controllers;
+package com.denisson.backend.categories.adapters.controller;
 
 import com.denisson.backend.categories.adapters.DTO.CategoryDTO;
 import com.denisson.backend.categories.entities.Category;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("categories")
