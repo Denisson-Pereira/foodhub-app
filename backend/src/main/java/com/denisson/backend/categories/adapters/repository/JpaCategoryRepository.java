@@ -26,4 +26,9 @@ public class JpaCategoryRepository implements CategoriesRepository {
         return repository.save(category);
     }
 
+    @Override
+    public List<Category> findAll() {
+        return repository.findAll();
+    }
+
 }

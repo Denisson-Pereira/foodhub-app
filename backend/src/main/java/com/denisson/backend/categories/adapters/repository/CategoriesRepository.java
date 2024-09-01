@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface CategoriesRepository {
 
     Category save(Category categories);
+    List<Category> findAll();
     boolean existsByName(String name);
 
 }
