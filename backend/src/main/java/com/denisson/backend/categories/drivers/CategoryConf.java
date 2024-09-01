@@ -2,6 +2,7 @@ package com.denisson.backend.categories.drivers;
 
 import com.denisson.backend.categories.adapters.repository.CategoriesRepository;
 import com.denisson.backend.categories.useCases.CreateCategoryUseCase;
+import com.denisson.backend.categories.useCases.DeleteCategoryById;
 import com.denisson.backend.categories.useCases.GetAllCategoriesUseCase;
 import com.denisson.backend.categories.useCases.GetCategoryByIdUseCase;
 import org.springframework.context.annotation.Bean;
@@ -22,5 +23,10 @@ public class CategoryConf {
     @Bean
     public GetCategoryByIdUseCase getCategoryByIdUseCase(CategoriesRepository categoriesRepository) {
         return new GetCategoryByIdUseCase(categoriesRepository);
+    }
+
+    @Bean
+    public DeleteCategoryById deleteCategoryById(CategoriesRepository categoriesRepository) {
+        return new DeleteCategoryById(categoriesRepository);
     }
 }

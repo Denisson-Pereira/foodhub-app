@@ -3,6 +3,7 @@ package com.denisson.backend.categories.adapters.controllers;
 import com.denisson.backend.categories.entities.Category;
 import com.denisson.backend.categories.entities.GeneralException;
 import com.denisson.backend.categories.useCases.CreateCategoryUseCase;
+import com.denisson.backend.categories.useCases.DeleteCategoryById;
 import com.denisson.backend.categories.useCases.GetAllCategoriesUseCase;
 import com.denisson.backend.categories.useCases.GetCategoryByIdUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class CategoryController {
     GetAllCategoriesUseCase getAllCategoriesUseCase;
     @Autowired
     GetCategoryByIdUseCase getCategoryByIdUseCase;
+    @Autowired
+    DeleteCategoryById deleteCategoryById;
 
     @PostMapping()
     public ResponseEntity<Object> createCategory(@RequestBody Category category) {
@@ -42,6 +45,15 @@ public class CategoryController {
     public ResponseEntity<Object> getCategoryById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(getCategoryByIdUseCase.execute(id));
+        } catch (GeneralException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(deleteCategoryById.execute(id));
         } catch (GeneralException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

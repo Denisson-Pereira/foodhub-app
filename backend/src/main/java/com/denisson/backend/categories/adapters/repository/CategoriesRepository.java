@@ -12,5 +12,6 @@ public interface CategoriesRepository {
     boolean existsByName(String name);
     boolean existsById(Long id);
     Optional<Category> findById(Long id);
+    void deleteById(Long id);
 
 }
