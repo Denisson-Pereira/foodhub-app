@@ -12,4 +12,6 @@ public interface EstablishmentRepository {
     boolean existsByName(String name);
     boolean existsById(Long id);
     Optional<Establishment> findById(Long id);
+    Optional<Establishment> findByName(String name);
+    void delete(Long id);
 }

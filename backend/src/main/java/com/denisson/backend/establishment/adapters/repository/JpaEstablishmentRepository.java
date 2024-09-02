@@ -40,4 +40,14 @@ public class JpaEstablishmentRepository implements EstablishmentRepository{
     public Optional<Establishment> findById(Long id) {
         return repository.findById(id);
     }
+
+    @Override
+    public Optional<Establishment> findByName(String name) {
+        return repository.findByName(name);
+    }
+
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
 }

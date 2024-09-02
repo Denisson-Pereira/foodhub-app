@@ -21,7 +21,7 @@ public class UpdateCategoryByIdUseCase {
         Optional<Category> categoryWithName = categoriesRepository.findByName(categoryDTO.name());
 
         if (categoryWithName.isPresent() && !categoryWithName.get().getId().equals(id)) {
-            throw new GeneralException(String.format("Name %s already exists ", categoryDTO.name()));
+            throw new GeneralException(String.format("Name %s already exists!", categoryDTO.name()));
         }
 
         category.setName(categoryDTO.name());
