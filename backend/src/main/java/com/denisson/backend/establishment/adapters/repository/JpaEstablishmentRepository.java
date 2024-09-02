@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class JpaEstablishmentRepository implements EstablishmentRepository{
@@ -13,6 +14,16 @@ public class JpaEstablishmentRepository implements EstablishmentRepository{
     @Autowired
     public JpaEstablishmentRepository(SpringDataEstablishmentRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    public boolean existsByName(String name) {
+        return repository.existsByName(name);
+    }
+
+    @Override
+    public Establishment save(Establishment establishment) {
+        return repository.save(establishment);
     }
 
     @Override
