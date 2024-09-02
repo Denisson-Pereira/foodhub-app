@@ -30,4 +30,14 @@ public class JpaEstablishmentRepository implements EstablishmentRepository{
     public List<Establishment> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
+    }
+
+    @Override
+    public Optional<Establishment> findById(Long id) {
+        return repository.findById(id);
+    }
 }

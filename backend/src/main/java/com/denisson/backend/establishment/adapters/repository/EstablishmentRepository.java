@@ -10,4 +10,6 @@ public interface EstablishmentRepository {
     Establishment save(Establishment establishment);
     List<Establishment> findAll();
     boolean existsByName(String name);
+    boolean existsById(Long id);
+    Optional<Establishment> findById(Long id);
 }
