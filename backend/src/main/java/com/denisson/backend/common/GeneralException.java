@@ -1,4 +1,4 @@
-package com.denisson.backend.categories.entities;
+package com.denisson.backend.common;
 
 public class GeneralException extends RuntimeException {
     public GeneralException(String message) {

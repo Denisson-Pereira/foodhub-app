@@ -2,7 +2,7 @@ package com.denisson.backend.categories.useCases;
 
 import com.denisson.backend.categories.adapters.repository.CategoriesRepository;
 import com.denisson.backend.categories.entities.Category;
-import com.denisson.backend.categories.entities.GeneralException;
+import com.denisson.backend.common.GeneralException;
 
 import java.util.Optional;
 

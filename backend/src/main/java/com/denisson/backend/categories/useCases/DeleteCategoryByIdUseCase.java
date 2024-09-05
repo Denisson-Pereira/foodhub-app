@@ -1,7 +1,7 @@
 package com.denisson.backend.categories.useCases;
 
 import com.denisson.backend.categories.adapters.repository.CategoriesRepository;
-import com.denisson.backend.categories.entities.GeneralException;
+import com.denisson.backend.common.GeneralException;
 
 public class DeleteCategoryByIdUseCase {
     private final CategoriesRepository categoriesRepository;

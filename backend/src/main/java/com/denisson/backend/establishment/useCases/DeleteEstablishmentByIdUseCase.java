@@ -1,8 +1,8 @@
 package com.denisson.backend.establishment.useCases;
 
 
+import com.denisson.backend.common.GeneralException;
 import com.denisson.backend.establishment.adapters.repository.EstablishmentRepository;
-import com.denisson.backend.establishment.entities.GeneralException;
 
 public class DeleteEstablishmentByIdUseCase {
     private final EstablishmentRepository establishmentRepository;

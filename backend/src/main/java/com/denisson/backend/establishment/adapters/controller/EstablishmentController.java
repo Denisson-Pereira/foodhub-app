@@ -1,21 +1,18 @@
 package com.denisson.backend.establishment.adapters.controller;
 
-import com.denisson.backend.categories.useCases.UpdateCategoryByIdUseCase;
+import com.denisson.backend.common.AbstracterController;
 import com.denisson.backend.establishment.adapters.DTO.EstablishmentDTO;
 import com.denisson.backend.establishment.entities.Establishment;
-import com.denisson.backend.establishment.entities.GeneralException;
 import com.denisson.backend.establishment.useCases.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("establishments")
-public class EstablishmentController {
+public class EstablishmentController extends AbstracterController<Establishment, Long, EstablishmentDTO> {
+
     @Autowired
     CreateEstablishmentUseCase createEstablishmentUseCase;
     @Autowired
@@ -27,45 +24,28 @@ public class EstablishmentController {
     @Autowired
     DeleteEstablishmentByIdUseCase deleteEstablishmentByIdUseCase;
 
-    @PostMapping()
-    public ResponseEntity<Object> createEstablishment(@RequestBody Establishment establishment) {
-        try {
-            return ResponseEntity.ok(createEstablishmentUseCase.execute(establishment));
-        } catch (GeneralException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+    @Override
+    protected Object createUseCase(Establishment establishment) {
+        return createEstablishmentUseCase.execute(establishment);
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Establishment>> getAllEstablishment() {
-        return ResponseEntity.ok(getAllEstablishmentUseCase.execute());
+    @Override
+    protected List<Establishment> getAllUseCase() {
+        return getAllEstablishmentUseCase.execute();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getEstablishmentById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(getEstablishmentByIdUseCase.execute(id));
-        } catch (GeneralException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    @Override
+    protected Object getByIdUseCase(Long id) {
+        return getEstablishmentByIdUseCase.execute(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> putEstablishmentById(@PathVariable Long id, @RequestBody EstablishmentDTO establishmentDTO) {
-        try {
-            return ResponseEntity.ok(updateEstablishmentByIdUseCase.execute(id, establishmentDTO));
-        } catch (GeneralException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    @Override
+    protected Object updateByIdUseCase(Long id, EstablishmentDTO establishmentDTO) {
+        return updateEstablishmentByIdUseCase.execute(id, establishmentDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEstablishment(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(deleteEstablishmentByIdUseCase.execute(id));
-        } catch (GeneralException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    @Override
+    protected String deleteByIdUseCase(Long id) {
+        return deleteEstablishmentByIdUseCase.execute(id);
     }
-
 }
