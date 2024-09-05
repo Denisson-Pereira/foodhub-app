@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public abstract class AbstracterController<T, ID, DTO> {
+public abstract class AbstracterController<T, ID, DTO> implements AbstracterInterface<T, ID, DTO>{
 
     @PostMapping()
     public ResponseEntity<Object> create(@RequestBody T entity) {
@@ -32,7 +32,7 @@ public abstract class AbstracterController<T, ID, DTO> {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> UpdateById(@PathVariable ID id, @RequestBody DTO dto) {
+    public ResponseEntity<Object> updateById(@PathVariable ID id, @RequestBody DTO dto) {
         try {
             return ResponseEntity.ok(updateByIdUseCase(id, dto));
         } catch (GeneralException e) {
