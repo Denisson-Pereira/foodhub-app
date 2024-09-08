@@ -14,4 +14,5 @@ public interface EstablishmentRepository {
     Optional<Establishment> findById(Long id);
     Optional<Establishment> findByName(String name);
     void delete(Long id);
+
 }
