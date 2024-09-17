@@ -1,21 +1,13 @@
 package com.denisson.backend.categories.useCases;
 
+import com.denisson.backend.abstracter.useCases.DeleteAbstracterByIdUseCase;
 import com.denisson.backend.categories.adapters.repository.CategoriesRepository;
-import com.denisson.backend.common.GeneralException;
+import com.denisson.backend.abstracter.useCases.GeneralException;
+import com.denisson.backend.categories.entities.Category;
 
-public class DeleteCategoryByIdUseCase {
-    private final CategoriesRepository categoriesRepository;
+public class DeleteCategoryByIdUseCase extends DeleteAbstracterByIdUseCase<Category, CategoriesRepository> {
 
     public DeleteCategoryByIdUseCase(CategoriesRepository categoriesRepository) {
-        this.categoriesRepository = categoriesRepository;
-    }
-
-    public String execute(Long id) {
-        if (categoriesRepository.existsById(id)) {
-            categoriesRepository.deleteById(id);
-            return String.format("Id %s deleted", id);
-        }
-
-        throw new GeneralException(String.format("Id %s not found!", id));
+        super(categoriesRepository);
     }
 }

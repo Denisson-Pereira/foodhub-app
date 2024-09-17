@@ -1,6 +1,6 @@
 package com.denisson.backend.product.adapters.controller;
 
-import com.denisson.backend.common.AbstracterController;
+import com.denisson.backend.abstracter.adapters.controller.ControllerAbstracter;
 import com.denisson.backend.product.adapters.DTO.ProductDTO;
 import com.denisson.backend.product.entities.Product;
 import com.denisson.backend.product.useCases.*;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("products")
-public class ProductController extends AbstracterController<Product, Long, ProductDTO> {
+public class ProductControllerAbstracter extends ControllerAbstracter<Product, Long, ProductDTO> {
 
     @Autowired
     CreateProductUseCase createProductUseCase;

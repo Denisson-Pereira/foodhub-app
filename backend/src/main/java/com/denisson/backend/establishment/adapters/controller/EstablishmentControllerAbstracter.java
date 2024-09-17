@@ -1,6 +1,6 @@
 package com.denisson.backend.establishment.adapters.controller;
 
-import com.denisson.backend.common.AbstracterController;
+import com.denisson.backend.abstracter.adapters.controller.ControllerAbstracter;
 import com.denisson.backend.establishment.adapters.DTO.EstablishmentDTO;
 import com.denisson.backend.establishment.entities.Establishment;
 import com.denisson.backend.establishment.useCases.*;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("establishments")
-public class EstablishmentController extends AbstracterController<Establishment, Long, EstablishmentDTO> {
+public class EstablishmentControllerAbstracter extends ControllerAbstracter<Establishment, Long, EstablishmentDTO> {
 
     @Autowired
     CreateEstablishmentUseCase createEstablishmentUseCase;

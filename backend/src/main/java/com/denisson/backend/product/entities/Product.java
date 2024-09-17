@@ -1,5 +1,6 @@
 package com.denisson.backend.product.entities;
 
+import com.denisson.backend.product.adapters.DTO.ProductDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +19,6 @@ public class Product {
     private String category;
     private String establishment;
     private String image;
-
 
     public Long getId() {
         return id;

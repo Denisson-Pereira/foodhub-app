@@ -1,11 +1,10 @@
-package com.denisson.backend.common;
+package com.denisson.backend.abstracter.adapters.interfaces;
 
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface AbstracterInterface<T, ID, DTO> {
+public interface InterfaceAbstracter<T, ID, DTO> {
 
     ResponseEntity<Object> create(T entity);
     ResponseEntity<List<T>> getAll();

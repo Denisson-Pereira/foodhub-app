@@ -3,17 +3,15 @@ package com.denisson.backend.categories.adapters.controller;
 import com.denisson.backend.categories.adapters.DTO.CategoryDTO;
 import com.denisson.backend.categories.entities.Category;
 import com.denisson.backend.categories.useCases.*;
-import com.denisson.backend.common.AbstracterController;
+import com.denisson.backend.abstracter.adapters.controller.ControllerAbstracter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("categories")
-public class CategoryController extends AbstracterController<Category, Long, CategoryDTO> {
+public class CategoryController extends ControllerAbstracter<Category, Long, CategoryDTO> {
 
     @Autowired
     CreateCategoryUseCase createCategoryUseCase;

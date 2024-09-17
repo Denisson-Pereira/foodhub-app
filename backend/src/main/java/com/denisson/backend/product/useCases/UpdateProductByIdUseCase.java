@@ -1,6 +1,6 @@
 package com.denisson.backend.product.useCases;
 
-import com.denisson.backend.common.GeneralException;
+import com.denisson.backend.abstracter.useCases.GeneralException;
 import com.denisson.backend.product.adapters.DTO.ProductDTO;
 import com.denisson.backend.product.adapters.repository.ProductRepository;
 import com.denisson.backend.product.entities.Product;

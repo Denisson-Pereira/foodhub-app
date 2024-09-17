@@ -1,6 +1,6 @@
 package com.denisson.backend.users.adapters.controllers;
 
-import com.denisson.backend.common.GeneralException;
+import com.denisson.backend.abstracter.useCases.GeneralException;
 import com.denisson.backend.users.adapters.DTO.LoginDTO;
 import com.denisson.backend.users.entities.User;
 import com.denisson.backend.users.useCases.LoginUserCase;
