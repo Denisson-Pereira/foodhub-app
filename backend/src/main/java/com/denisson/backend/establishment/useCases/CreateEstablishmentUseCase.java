@@ -1,20 +1,15 @@
 package com.denisson.backend.establishment.useCases;
 
+import com.denisson.backend.abstracter.adapters.repository.RepositoryAbstracter;
 import com.denisson.backend.abstracter.entities.GeneralException;
+import com.denisson.backend.abstracter.useCases.CreateAbstracterUseCase;
 import com.denisson.backend.establishment.adapters.repository.EstablishmentRepository;
 import com.denisson.backend.establishment.entities.Establishment;
 
-public class CreateEstablishmentUseCase {
-    private final EstablishmentRepository establishmentRepository;
+public class CreateEstablishmentUseCase extends CreateAbstracterUseCase<Establishment, EstablishmentRepository> {
 
     public CreateEstablishmentUseCase(EstablishmentRepository establishmentRepository) {
-        this.establishmentRepository = establishmentRepository;
+        super(establishmentRepository);
     }
 
-    public Establishment execute(Establishment establishment) {
-        if (establishmentRepository.existsByName(establishment.getName())) {
-            throw new GeneralException(String.format("Name %s already exist!", establishment.getName()));
-        }
-        return establishmentRepository.save(establishment);
-    }
 }

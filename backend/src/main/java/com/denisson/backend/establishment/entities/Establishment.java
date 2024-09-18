@@ -1,17 +1,14 @@
 package com.denisson.backend.establishment.entities;
 
+import com.denisson.backend.abstracter.entities.EntityAbstract;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Establishment {
+public class Establishment extends EntityAbstract {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    private String name;
     private String evaluation;
     private String description;
     private String price;
@@ -20,22 +17,6 @@ public class Establishment {
     private String tag_2;
     private String tag_3;
     private String image;
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getEvaluation() {
         return evaluation;

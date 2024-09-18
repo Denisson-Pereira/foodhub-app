@@ -1,5 +1,6 @@
 package com.denisson.backend.establishment.adapters.DTO;
 
+import com.denisson.backend.abstracter.adapters.DTO.DTOAbstracter;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Data Transfer Object (DTO) for representing an establishment")
@@ -30,5 +31,9 @@ public record EstablishmentDTO(
 
         @Schema(description = "The URL or path to an image of the establishment", example = "http://example.com/image.jpg")
         String image
-) {
+) implements DTOAbstracter {
+        @Override
+        public String getName() {
+                return name();
+        }
 }

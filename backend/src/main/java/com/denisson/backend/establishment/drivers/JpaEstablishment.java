@@ -1,5 +1,7 @@
-package com.denisson.backend.establishment.adapters.repository;
+package com.denisson.backend.establishment.drivers;
 
+import com.denisson.backend.establishment.adapters.repository.EstablishmentRepository;
+import com.denisson.backend.establishment.adapters.repository.SpringDataEstablishmentRepository;
 import com.denisson.backend.establishment.entities.Establishment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JpaEstablishmentRepository implements EstablishmentRepository{
+public class JpaEstablishment implements EstablishmentRepository {
     private final SpringDataEstablishmentRepository repository;
 
     @Autowired
-    public JpaEstablishmentRepository(SpringDataEstablishmentRepository repository) {
+    public JpaEstablishment(SpringDataEstablishmentRepository repository) {
         this.repository = repository;
     }
 
@@ -47,7 +49,8 @@ public class JpaEstablishmentRepository implements EstablishmentRepository{
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
 }

@@ -1,5 +1,7 @@
-package com.denisson.backend.categories.adapters.repository;
+package com.denisson.backend.categories.drivers;
 
+import com.denisson.backend.categories.adapters.repository.CategoriesRepository;
+import com.denisson.backend.categories.adapters.repository.SpringDataCategoryRepository;
 import com.denisson.backend.categories.entities.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JpaCategoryRepository implements CategoriesRepository {
+public class JpaCategory implements CategoriesRepository {
     private final SpringDataCategoryRepository repository;
 
     @Autowired
-    public JpaCategoryRepository(SpringDataCategoryRepository repository) {
+    public JpaCategory(SpringDataCategoryRepository repository) {
         this.repository = repository;
     }
 
