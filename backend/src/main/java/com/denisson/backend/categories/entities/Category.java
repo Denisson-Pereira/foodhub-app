@@ -1,34 +1,12 @@
 package com.denisson.backend.categories.entities;
 
+import com.denisson.backend.abstracter.entities.EntityAbstract;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Entity
-public class Category implements com.denisson.backend.abstracter.entities.Entity {
+public class Category extends EntityAbstract {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
     private String image;
-
-    public Long getId(){
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getImage() {
         return image;

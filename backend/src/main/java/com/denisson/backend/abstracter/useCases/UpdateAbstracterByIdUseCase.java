@@ -2,12 +2,12 @@ package com.denisson.backend.abstracter.useCases;
 
 import com.denisson.backend.abstracter.adapters.DTO.DTOAbstracter;
 import com.denisson.backend.abstracter.adapters.repository.RepositoryAbstracter;
-import com.denisson.backend.abstracter.entities.Entity;
+import com.denisson.backend.abstracter.entities.EntityAbstract;
 import com.denisson.backend.abstracter.entities.GeneralException;
 
 import java.util.Optional;
 
-public abstract class UpdateAbstracterByIdUseCase<T extends Entity, DTO extends DTOAbstracter, Repository extends RepositoryAbstracter<T>> {
+public abstract class UpdateAbstracterByIdUseCase<T extends EntityAbstract, DTO extends DTOAbstracter, Repository extends RepositoryAbstracter<T>> {
     private final Repository repository;
 
     protected UpdateAbstracterByIdUseCase(Repository repository) {

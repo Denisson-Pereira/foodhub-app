@@ -1,10 +1,10 @@
 package com.denisson.backend.abstracter.useCases;
 
 import com.denisson.backend.abstracter.adapters.repository.RepositoryAbstracter;
-import com.denisson.backend.abstracter.entities.Entity;
+import com.denisson.backend.abstracter.entities.EntityAbstract;
 import com.denisson.backend.abstracter.entities.GeneralException;
 
-public abstract class CreateAbstracterUseCase<T extends Entity, Repository extends RepositoryAbstracter<T>>  {
+public abstract class CreateAbstracterUseCase<T extends EntityAbstract, Repository extends RepositoryAbstracter<T>>  {
 
     private final Repository repository;
 
