@@ -1,21 +1,13 @@
 package com.denisson.backend.product.useCases;
 
 import com.denisson.backend.abstracter.entities.GeneralException;
+import com.denisson.backend.abstracter.useCases.DeleteAbstracterByIdUseCase;
 import com.denisson.backend.product.adapters.repository.ProductRepository;
+import com.denisson.backend.product.entities.Product;
 
-public class DeleteProductByIdUseCase {
-    private final ProductRepository productRepository;
+public class DeleteProductByIdUseCase extends DeleteAbstracterByIdUseCase<Product, ProductRepository> {
 
     public DeleteProductByIdUseCase(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
-    public String execute(Long id) {
-        if(productRepository.existsById(id)) {
-            productRepository.delete(id);
-            return String.format("Product with if %s deleted!", id);
-        }
-
-        throw new GeneralException(String.format("Id %s not found!", id));
+        super(productRepository);
     }
 }

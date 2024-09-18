@@ -1,5 +1,7 @@
-package com.denisson.backend.product.adapters.repository;
+package com.denisson.backend.product.drivers;
 
+import com.denisson.backend.product.adapters.repository.ProductRepository;
+import com.denisson.backend.product.adapters.repository.SpringDataProductRepository;
 import com.denisson.backend.product.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JpaProductRepository implements ProductRepository {
+public class JpaProduct implements ProductRepository {
     private final SpringDataProductRepository repository;
 
     @Autowired
-    public JpaProductRepository(SpringDataProductRepository repository) {
+    public JpaProduct(SpringDataProductRepository repository) {
         this.repository = repository;
     }
 
@@ -28,8 +30,8 @@ public class JpaProductRepository implements ProductRepository {
     }
 
     @Override
-    public boolean existsByEstablishment(String establishment) {
-        return repository.existsByEstablishment(establishment);
+    public boolean existsByName(String name) {
+        return repository.existsByName(name);
     }
 
     @Override
@@ -48,7 +50,8 @@ public class JpaProductRepository implements ProductRepository {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
 }

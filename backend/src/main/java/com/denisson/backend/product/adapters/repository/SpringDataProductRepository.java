@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface SpringDataProductRepository extends JpaRepository<Product, Long> {
-    boolean existsByEstablishment(String establishment);
+    boolean existsByName(String name);
     Optional<Product> findByName(String name);
 }

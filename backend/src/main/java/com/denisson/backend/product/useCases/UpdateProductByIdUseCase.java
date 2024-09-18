@@ -1,28 +1,22 @@
 package com.denisson.backend.product.useCases;
 
 import com.denisson.backend.abstracter.entities.GeneralException;
+import com.denisson.backend.abstracter.useCases.UpdateAbstracterByIdUseCase;
 import com.denisson.backend.product.adapters.DTO.ProductDTO;
 import com.denisson.backend.product.adapters.repository.ProductRepository;
 import com.denisson.backend.product.entities.Product;
 
 import java.util.Optional;
 
-public class UpdateProductByIdUseCase {
-    private final ProductRepository productRepository;
+public class UpdateProductByIdUseCase extends UpdateAbstracterByIdUseCase<Product, ProductDTO, ProductRepository> {
+
 
     public UpdateProductByIdUseCase(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+        super(productRepository);
     }
 
-    public Product execute(Long id, ProductDTO productDTO) {
-        Optional<Product> optionalProduct = productRepository.findById(id);
-        Product product = optionalProduct
-                .orElseThrow(() -> new GeneralException("Product not found for id = " + id));
-        Optional<Product> productWithName = productRepository.findByName(productDTO.name());
-
-        if (productWithName.isPresent() && !productWithName.get().getId().equals(id)) {
-            throw new GeneralException(String.format("Name %s already exists!", productDTO.name()));
-        }
+    @Override
+    protected void updateFields(Product product, ProductDTO productDTO) {
 
         product.setName(productDTO.name());
         product.setEvaluation(productDTO.evaluation());
@@ -32,6 +26,5 @@ public class UpdateProductByIdUseCase {
         product.setEstablishment(productDTO.establishment());
         product.setImage(productDTO.image());
 
-        return productRepository.save(product);
     }
 }

@@ -1,6 +1,6 @@
 package com.denisson.backend.product.useCases;
 
-import com.denisson.backend.product.adapters.repository.JpaProductRepository;
+import com.denisson.backend.product.drivers.JpaProduct;
 import com.denisson.backend.product.entities.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class GetAllProductUseCaseTest {
 
     @Autowired
-    private JpaProductRepository jpaProductRepository;
+    private JpaProduct jpaProduct;
 
     private GetAllProductUseCase getAllProductUseCase;
 
     @BeforeEach
     void setUp() {
-        getAllProductUseCase = new GetAllProductUseCase(jpaProductRepository);
+        getAllProductUseCase = new GetAllProductUseCase(jpaProduct);
     }
 
     @Test
