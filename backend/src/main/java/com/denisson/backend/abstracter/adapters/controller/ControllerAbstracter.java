@@ -1,7 +1,7 @@
 package com.denisson.backend.abstracter.adapters.controller;
 
 import com.denisson.backend.abstracter.adapters.interfaces.InterfaceAbstracter;
-import com.denisson.backend.abstracter.useCases.GeneralException;
+import com.denisson.backend.abstracter.entities.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

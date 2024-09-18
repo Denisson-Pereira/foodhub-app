@@ -1,6 +1,7 @@
 package com.denisson.backend.abstracter.useCases;
 
 import com.denisson.backend.abstracter.adapters.repository.RepositoryAbstracter;
+import com.denisson.backend.abstracter.entities.GeneralException;
 
 import java.util.Optional;
 

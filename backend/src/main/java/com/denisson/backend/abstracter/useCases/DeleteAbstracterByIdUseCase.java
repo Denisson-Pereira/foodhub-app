@@ -1,6 +1,7 @@
 package com.denisson.backend.abstracter.useCases;
 
 import com.denisson.backend.abstracter.adapters.repository.RepositoryAbstracter;
+import com.denisson.backend.abstracter.entities.GeneralException;
 
 public abstract class DeleteAbstracterByIdUseCase<T, Repository extends RepositoryAbstracter<T>> {
 
