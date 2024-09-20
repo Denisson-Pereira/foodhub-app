@@ -14,20 +14,28 @@ public abstract class UpdateAbstracterByIdUseCase<T extends EntityAbstract, DTO 
         this.repository = repository;
     }
 
-    public T execute(Long id, DTO dto) {
-        Optional<T> optionalT = repository.findById(id);
-        T entity = optionalT
-                .orElseThrow(() -> new GeneralException(String.format("%s not found for id = " + id, dto.getName())));
-        Optional<T> tWithName = repository.findByName(dto.getName());
+    public final T execute(Long id, DTO dto) {
+        T entity = findEntityById(id, dto);
+        validateNameUniqueness(id, dto);
+        updateFields(entity, dto);
+        return saveEntity(entity);
+    }
 
-        if (tWithName.isPresent() && !tWithName.get().getId().equals(id)) {
+    private T findEntityById(Long id, DTO dto) {
+        return repository.findById(id)
+                .orElseThrow(() -> new GeneralException(String.format("%s not found for id = " + id, dto.getName())));
+    }
+
+    private void validateNameUniqueness(Long id, DTO dto) {
+        Optional<T> entityWithName = repository.findByName(dto.getName());
+        if (entityWithName.isPresent() && !entityWithName.get().getId().equals(id)) {
             throw new GeneralException(String.format("Name %s already exists!", dto.getName()));
         }
-
-        updateFields(entity, dto);
-
-        return repository.save(entity);
     }
 
     protected abstract void updateFields(T entity, DTO dto);
+
+    private T saveEntity(T entity) {
+        return repository.save(entity);
+    }
 }

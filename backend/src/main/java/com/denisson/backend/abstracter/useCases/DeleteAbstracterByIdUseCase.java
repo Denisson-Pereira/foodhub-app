@@ -11,11 +11,26 @@ public abstract class DeleteAbstracterByIdUseCase<T, Repository extends Reposito
         this.repository = repository;
     }
 
-    public String execute(Long id) {
-        if (repository.existsById(id)) {
-            repository.deleteById(id);
-            return String.format("Id %s deleted", id);
-        }
-        throw new GeneralException(String.format("Id %s not found!", id));
+    public final String execute(Long id) {
+        validateId(id);
+        T entity = findEntityById(id);
+        return deleteById(id);
     }
+
+    private void validateId(Long id) {
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException(String.format("Id %s not valid!", id));
+        }
+    }
+
+    private T findEntityById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new GeneralException(String.format("Entity with id %s not found!", id)));
+    }
+
+    private String deleteById(Long id) {
+        repository.deleteById(id);
+        return String.format("Entity with id %s deleted successfully!", id);
+    }
+
 }
