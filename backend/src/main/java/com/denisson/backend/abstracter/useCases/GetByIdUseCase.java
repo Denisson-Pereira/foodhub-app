@@ -5,10 +5,10 @@ import com.denisson.backend.exceptions.IdNotFoundException;
 
 import java.util.Optional;
 
-public abstract class GeyByIdUseCase<T> {
+public abstract class GetByIdUseCase<T> {
     private final AbstractRepository<T> repository;
 
-    public GeyByIdUseCase(AbstractRepository<T> repository) {
+    public GetByIdUseCase(AbstractRepository<T> repository) {
         this.repository = repository;
     }
 
