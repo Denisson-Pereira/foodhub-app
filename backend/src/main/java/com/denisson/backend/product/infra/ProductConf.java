@@ -19,7 +19,7 @@ public class ProductConf {
         return new CreateProductUseCase(producAbstractRepository);
     }
 
-        @Bean
+    @Bean
     public GetAllProductUseCase getAllProductUseCase(AbstractRepository<Product> productAbstractRepository) {
         return new GetAllProductUseCase(productAbstractRepository);
     }
