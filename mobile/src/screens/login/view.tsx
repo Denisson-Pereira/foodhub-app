@@ -3,7 +3,7 @@ import { useLoginViewModel } from './viewModel'
 import { Button, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export const LoginView = () => {
-    const { login, password, setLogin, setPassword, onSubmit, isLoading } = useLoginViewModel();
+    const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused } = useLoginViewModel();
     return (
         <ImageBackground
             style={[styles.safe]}
@@ -15,19 +15,23 @@ export const LoginView = () => {
                     <View style={styles.viewField}>
                         <Text style={styles.text}>E-mail</Text>
                         <TextInput
-                            style={styles.input}
+                            style={isLoginFocused ? styles.inputFocused : styles.input}
                             placeholder='You email or login'
                             value={login}
                             onChangeText={setLogin}
+                            onFocus={() => setIsLoginFocused(true)}
+                            onBlur={() => setIsLoginFocused(false)}
                         />
                     </View>
                     <View style={styles.viewField}>
                         <Text style={styles.text}>Password</Text>
                         <TextInput
-                            style={styles.input}
+                            style={isPasswordFocused ? styles.inputFocused : styles.input}
                             placeholder='Password'
                             value={password}
                             onChangeText={setPassword}
+                            onFocus={() => setIsPasswordFocused(true)}
+                            onBlur={() => setIsPasswordFocused(false)}
                         />
                     </View>
                     <TouchableOpacity style={styles.touchable}>
@@ -48,8 +52,8 @@ export const LoginView = () => {
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
-            <Image 
-                source={require('../../assets/signup.png')} 
+            <Image
+                source={require('../../assets/signup.png')}
                 style={styles.image}
             />
         </ImageBackground>
@@ -78,6 +82,15 @@ const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
         borderColor: '#E1E1E1',
+        height: 70,
+        borderRadius: 10,
+        padding: 10,
+        fontSize: 20,
+        fontWeight: '500',
+    },
+    inputFocused: {
+        borderWidth: 2,
+        borderColor: '#FE724C',
         height: 70,
         borderRadius: 10,
         padding: 10,
