@@ -3,8 +3,9 @@ import { loginService } from "../../services/loginService";
 import { useFoodHubContext } from "../../context";
 import { useNavigate } from "../../hooks/useNavigate";
 import { Alert } from "react-native";
+import { ILoginModel } from "./model";
 
-export const useLoginViewModel = () => {
+export const useLoginViewModel = (): ILoginModel => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -29,5 +30,5 @@ export const useLoginViewModel = () => {
         }
     }
 
-    return { login, password, setLogin, setPassword, onSubmit, isLoading };
+    return { login, password, setLogin, setPassword, onSubmit, isLoading, setIsLoading };
 }

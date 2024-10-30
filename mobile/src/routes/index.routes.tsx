@@ -18,7 +18,7 @@ export default function Routes() {
                     </>
                 ) : (
                     <>
-                        <Stack.Screen name="Login" component={LoginView} />
+                        <Stack.Screen name="login" component={LoginView} />
                     </>
                 )}
             </Stack.Navigator>

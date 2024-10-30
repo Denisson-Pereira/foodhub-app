@@ -11,7 +11,7 @@ export const Home = () => {
     const limpar= async () => {
         await logoutService();
         setUser({} as IUser)
-        navigate("login");
+        navigate('login');
     }
     return (
         <View>
