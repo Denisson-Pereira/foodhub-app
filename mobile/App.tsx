@@ -1,20 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { FoodhubProovider } from './src/context';
+import { FoodhubProvider } from './src/context';
 import Routes from './src/routes/index.routes';
 
 export default function App() {
   return (
-    <FoodhubProovider>
+    <FoodhubProvider>
       <Routes />
-    </FoodhubProovider>
+    </FoodhubProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

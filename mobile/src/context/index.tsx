@@ -14,7 +14,7 @@ type Props = {
 
 const Context = createContext<FoodHubProps>({} as FoodHubProps);
 
-export const FoodhubProovider: React.FC<Props> = ({children}: Props) => {
+export const FoodhubProvider: React.FC<Props> = ({children}: Props) => {
     const [user, setUser] = useState<IUser>({} as IUser);
 
     useEffect(() => {

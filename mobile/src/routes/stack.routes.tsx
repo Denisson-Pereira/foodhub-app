@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Login } from "../screens/Login";
-import { Texte } from "../screens/Texte";
+import { Home } from "../screens/Home";
+import { LoginView } from "../screens/login/view";
 
 const Stack = createStackNavigator();
 
@@ -13,20 +13,16 @@ export default function StackRoutes() {
         >
             <Stack.Screen
                 name="login"
-                component={Login}
+                component={LoginView}
                 options={{
-                    headerShown: true,
-                    headerTitle: 'login'
+                    headerShown: false,
                 }}
             />
 
-            <Stack.Screen
-                name="teste"
-                component={Texte}
-                options={{
-                    headerShown: true,
-                    headerTitle: 'login'
-                }}
+            <Stack.Screen 
+                name="home"
+                component={Home}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )
