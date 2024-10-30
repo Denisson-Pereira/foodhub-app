@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: {
+        width: '100%',
         marginTop: 600,
     },
     view: {
