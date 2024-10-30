@@ -17,8 +17,9 @@ export async function loginService(login: string, password: string, setUser: (us
             setUser(data);
             return data;
         }
-    } catch (error) {
+    } catch (error: any) {
         console.log(error)
-        return {msg: 'Error connecting to the server!'}
+        const errorMessage = error.response?.data?.message || 'Erro ao conectar ao servidor!';
+        return { msg: errorMessage }; 
     }
 }

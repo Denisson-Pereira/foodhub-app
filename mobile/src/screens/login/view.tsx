@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLoginViewModel } from './viewModel'
-import { Button, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Button, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export const LoginView = () => {
-    const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused } = useLoginViewModel();
+    const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error } = useLoginViewModel();
+
+    useEffect(() => {
+        if(error) {
+            Alert.alert("Erro", error);
+        }
+    }, [error])
+
     return (
         <ImageBackground
             style={[styles.safe]}
@@ -53,7 +60,7 @@ export const LoginView = () => {
                 </View>
             </SafeAreaView>
             <Image
-                source={require('../../assets/signup.png')}
+                source={require('../../assets/signin.png')}
                 style={styles.image}
             />
         </ImageBackground>

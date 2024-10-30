@@ -1,17 +1,15 @@
-import React from "react"
-
-export interface ILoginModel {
+export interface ISignUpModel {
+    name: string
     login: string
     password: string
-    isLoading: boolean
+    isNameFocused: boolean
     isLoginFocused: boolean
     isPasswordFocused: boolean
-    error: string | null
+    setName: React.Dispatch<React.SetStateAction<string>>
     setLogin: React.Dispatch<React.SetStateAction<string>>
     setPassword: React.Dispatch<React.SetStateAction<string>>
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsNameFocused: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoginFocused: React.Dispatch<React.SetStateAction<boolean>>
     setIsPasswordFocused: React.Dispatch<React.SetStateAction<boolean>>
-    setError: React.Dispatch<React.SetStateAction<string | null>>
     onSubmit: () => void
 }
