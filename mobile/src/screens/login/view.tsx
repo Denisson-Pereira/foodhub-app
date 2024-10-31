@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useLoginViewModel } from './viewModel'
-import { Alert, Button, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export const LoginView = () => {
-    const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error } = useLoginViewModel();
+    const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError } = useLoginViewModel();
 
     useEffect(() => {
         if(error) {

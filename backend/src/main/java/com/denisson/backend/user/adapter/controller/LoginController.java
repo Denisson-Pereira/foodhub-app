@@ -14,13 +14,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+import com.denisson.backend.exceptions.InvalidCredentialsException;
+import com.denisson.backend.exceptions.UsernameNotFoundException;
+
+
 @RestController
 @RequestMapping("/auth")
-public class loginController {
+public class LoginController {
     private final LoginUseCase loginUseCase;
     private final RegisterUseCase registerUseCase;
 
-    public loginController(LoginUseCase loginUseCase, RegisterUseCase registerUseCase) {
+    public LoginController(LoginUseCase loginUseCase, RegisterUseCase registerUseCase) {
         this.loginUseCase = loginUseCase;
         this.registerUseCase = registerUseCase;
     }
@@ -29,7 +33,9 @@ public class loginController {
     public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) {
         try {
             return ResponseEntity.ok(loginUseCase.login(loginDTO));
-        } catch (Exception e) {
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (InvalidCredentialsException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
@@ -42,6 +48,5 @@ public class loginController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-    
 }
 

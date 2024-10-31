@@ -1,5 +1,6 @@
 package com.denisson.backend.user.useCases;
 
+import com.denisson.backend.exceptions.InvalidCredentialsException;
 import com.denisson.backend.exceptions.UsernameNotFoundException;
 import com.denisson.backend.user.adapter.dtos.LoginDTO;
 import com.denisson.backend.user.adapter.gateway.UserRepository;
@@ -15,12 +16,14 @@ public class LoginUseCase {
 
 
     public User login(LoginDTO loginDTO) {
-        User user = repository.findByLogin(loginDTO.login()).orElseThrow(() -> new UsernameNotFoundException(loginDTO.login()));
+    User user = repository.findByLogin(loginDTO.login())
+            .orElseThrow(() -> new UsernameNotFoundException(loginDTO.login()));
 
-        if(user.getLogin().equals(loginDTO.login()) && user.getPassword().equals(loginDTO.password())) {
-            return user;
-        }
-
-        throw new IllegalArgumentException("Invalid credentials!");
+    if (user.getLogin().equals(loginDTO.login()) && user.getPassword().equals(loginDTO.password())) {
+        return user;
     }
+
+    throw new InvalidCredentialsException();
+}
+
 }

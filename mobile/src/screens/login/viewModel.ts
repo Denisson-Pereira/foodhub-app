@@ -4,6 +4,7 @@ import { useFoodHubContext } from "../../context";
 import { useNavigate } from "../../hooks/useNavigate";
 import { ILoginModel } from "./model";
 import { Alert } from "react-native";
+import { ILogin } from "../../models/ILogin";
 
 export const useLoginViewModel = (): ILoginModel => {
     const [login, setLogin] = useState<string>('');
@@ -25,7 +26,8 @@ export const useLoginViewModel = (): ILoginModel => {
         setIsLoading(true);
 
         try {
-            const response = await loginService(login, password, setUser);
+            const loginData: ILogin = { login, password }
+            const response = await loginService(loginData, setUser);
 
             if (response?.msg) {
                 setError(response.msg);
