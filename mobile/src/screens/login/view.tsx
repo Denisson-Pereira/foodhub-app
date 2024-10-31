@@ -5,7 +5,6 @@ import { CustomInput } from '../../custom/customInput';
 import { CustomButton } from '../../custom/customButton';
 import { CustomBackground } from '../../custom/customBackground';
 
-
 export const LoginView = () => {
     const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError } = useLoginViewModel();
 
@@ -27,6 +26,7 @@ export const LoginView = () => {
                             value={login}
                             onChangeText={setLogin}
                             secureTextEntry={false}
+                            keyboardType='email-address'
                             isFocused={isLoginFocused}
                             onFocus={() => setIsLoginFocused(true)}
                             onBlur={() => setIsLoginFocused(false)}
@@ -39,6 +39,7 @@ export const LoginView = () => {
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry={true}
+                            keyboardType='numeric'
                             isFocused={isPasswordFocused}
                             onFocus={() => setIsPasswordFocused(true)}
                             onBlur={() => setIsPasswordFocused(false)}
@@ -68,12 +69,6 @@ export const LoginView = () => {
 }
 
 const styles = StyleSheet.create({
-    safe: {
-        height: Dimensions.get("window").height,
-        overflow: 'hidden',
-        justifyContent: 'center',
-        padding: 25
-    },
     container: {
         flex: 1,
         justifyContent: 'center',
