@@ -14,4 +14,5 @@ export interface ILoginModel {
     setIsPasswordFocused: React.Dispatch<React.SetStateAction<boolean>>
     setError: React.Dispatch<React.SetStateAction<string | null>>
     onSubmit: () => void
+    signUp: () => void
 }

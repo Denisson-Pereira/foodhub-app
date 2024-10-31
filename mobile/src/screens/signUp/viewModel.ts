@@ -3,6 +3,7 @@ import { ISignUpModel } from "./model";
 import { signUpService } from "../../services/signUpService";
 import { useNavigate } from "../../hooks/useNavigate";
 import { IRegister } from "../../models/IRegister";
+import { fillAllFields } from "../../helpers/fillAllFields";
 
 export const useSignUpViewModel = (): ISignUpModel => {
     const [name, setName] = useState<string>('');
@@ -17,6 +18,12 @@ export const useSignUpViewModel = (): ISignUpModel => {
     const { navigate } = useNavigate();
 
     const onSubmit = async () => {
+        const errorMessage = fillAllFields(name, login, password);
+        if (errorMessage) {
+            setError(errorMessage);
+            return;
+        }
+
         try {
             const register: IRegister = { name, login, password }
             const response = await signUpService(register);
@@ -25,11 +32,15 @@ export const useSignUpViewModel = (): ISignUpModel => {
             } else {
                 setCreated(true);
             }
-            navigate('welcome');
+            navigate('login');
         } catch (error) {
             console.log(error);
         }
     }
 
-    return {name, login, password, isLoginFocused, isNameFocused, isPasswordFocused, error, created, setName, setLogin, setPassword, setIsNameFocused, setIsLoginFocused, setIsPasswordFocused, setError, setCreated, onSubmit}
+    const forLogin = () => {
+        navigate('login');
+    }
+
+    return {name, login, password, isLoginFocused, isNameFocused, isPasswordFocused, error, created, setName, setLogin, setPassword, setIsNameFocused, setIsLoginFocused, setIsPasswordFocused, setError, setCreated, onSubmit, forLogin}
 }
