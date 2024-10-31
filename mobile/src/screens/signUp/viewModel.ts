@@ -13,7 +13,7 @@ export const useSignUpViewModel = (): ISignUpModel => {
     const [isLoginFocused, setIsLoginFocused] = useState<boolean>(false);
     const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const [created, setCreated] = useState<boolean>(false);
+    const [registering, setRegistering] = useState<boolean>(false)
 
     const { navigate } = useNavigate();
 
@@ -29,8 +29,6 @@ export const useSignUpViewModel = (): ISignUpModel => {
             const response = await signUpService(register);
             if(response?.msg) {
                 setError(response.msg);
-            } else {
-                setCreated(true);
             }
             navigate('login');
         } catch (error) {
@@ -38,9 +36,16 @@ export const useSignUpViewModel = (): ISignUpModel => {
         }
     }
 
+    const handleRegister = async () => {
+        setRegistering(true);
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        await onSubmit();
+        setRegistering(false);
+    }
+
     const forLogin = () => {
         navigate('login');
     }
 
-    return {name, login, password, isLoginFocused, isNameFocused, isPasswordFocused, error, created, setName, setLogin, setPassword, setIsNameFocused, setIsLoginFocused, setIsPasswordFocused, setError, setCreated, onSubmit, forLogin}
+    return { name, login, password, isLoginFocused, isNameFocused, isPasswordFocused, error,  registering, handleRegister, setName, setLogin, setPassword, setIsNameFocused, setIsLoginFocused, setIsPasswordFocused, setError, forLogin }
 }

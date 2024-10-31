@@ -6,7 +6,7 @@ export interface ISignUpModel {
     isNameFocused: boolean
     isLoginFocused: boolean
     isPasswordFocused: boolean
-    created: boolean
+    registering: boolean
     setName: React.Dispatch<React.SetStateAction<string>>
     setLogin: React.Dispatch<React.SetStateAction<string>>
     setPassword: React.Dispatch<React.SetStateAction<string>>
@@ -14,7 +14,6 @@ export interface ISignUpModel {
     setIsNameFocused: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoginFocused: React.Dispatch<React.SetStateAction<boolean>>
     setIsPasswordFocused: React.Dispatch<React.SetStateAction<boolean>>
-    setCreated: React.Dispatch<React.SetStateAction<boolean>>
-    onSubmit: () => void
+    handleRegister: () => void
     forLogin: () => void
 }

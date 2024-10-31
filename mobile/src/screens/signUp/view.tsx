@@ -1,4 +1,4 @@
-import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CustomBackground } from "../../custom/customBackground";
 import { useSignUpViewModel } from "./viewModel"
 import { CustomButton } from "../../custom/customButton";
@@ -6,7 +6,7 @@ import { CustomInput } from "../../custom/customInput";
 import { useEffect } from "react";
 
 export const SignUpView = () => {
-    const { name, login, password, isNameFocused, isLoginFocused, isPasswordFocused, error, setError, onSubmit, forLogin, setIsNameFocused, setIsLoginFocused, setIsPasswordFocused, setName, setPassword, setLogin } = useSignUpViewModel();
+    const { name, login, password, isNameFocused, isLoginFocused, isPasswordFocused, error, setError, handleRegister, registering, forLogin, setIsNameFocused, setIsLoginFocused, setIsPasswordFocused, setName, setPassword, setLogin } = useSignUpViewModel();
 
     useEffect(() => {
         if (error) {
@@ -58,11 +58,17 @@ export const SignUpView = () => {
                             onBlur={() => setIsPasswordFocused(false)}
                         />
                     </View>
-                    <CustomButton
-                        title='SIGN UP'
-                        onPress={onSubmit}
-                        disabled={false}
-                    />
+
+                    {!registering ? (
+                        <CustomButton
+                            title='SIGN UP'
+                            onPress={handleRegister}
+                            disabled={false}
+                        />
+                    ) : (
+                        <ActivityIndicator size="large" color="#FE724C" style={styles.register} />
+                    )}
+
                     <View style={styles.viewSignIn}>
                         <Text style={styles.textBlack}>Already have an account? </Text>
                         <TouchableOpacity
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 20,
     },
-    viewSignIn:{
+    viewSignIn: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
@@ -121,4 +127,7 @@ const styles = StyleSheet.create({
     image: {
         marginTop: 70
     },
+    register: {
+        marginTop: 20,
+    }
 });
