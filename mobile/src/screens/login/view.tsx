@@ -6,11 +6,11 @@ import { CustomButton } from '../../custom/customButton';
 import { CustomBackground } from '../../custom/customBackground';
 
 export const LoginView = () => {
-    const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError } = useLoginViewModel();
+    const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp } = useLoginViewModel();
 
     useEffect(() => {
-        if(error) {
-            Alert.alert("Erro", error, [{ text: "OK", onPress: () => setError(null)}]);
+        if (error) {
+            Alert.alert("Erro", error, [{ text: "OK", onPress: () => setError(null) }]);
         }
     }, [error])
 
@@ -21,7 +21,7 @@ export const LoginView = () => {
                 <View style={styles.viewContainer}>
                     <View style={styles.viewField}>
                         <Text style={styles.text}>E-mail</Text>
-                        <CustomInput 
+                        <CustomInput
                             placeholder='You email or login'
                             value={login}
                             onChangeText={setLogin}
@@ -34,7 +34,7 @@ export const LoginView = () => {
                     </View>
                     <View style={styles.viewField}>
                         <Text style={styles.text}>Password</Text>
-                        <CustomInput 
+                        <CustomInput
                             placeholder='Password'
                             value={password}
                             onChangeText={setPassword}
@@ -48,15 +48,20 @@ export const LoginView = () => {
                     <TouchableOpacity style={styles.touchable}>
                         <Text style={styles.textOrange}>Forgot password?</Text>
                     </TouchableOpacity>
-                    <CustomButton 
+                    <CustomButton
                         title='LOGIN'
                         onPress={onSubmit}
                         disabled={isLoading}
                     />
-                    <TouchableOpacity style={styles.touchable}>
+                    <View style={styles.viewSignUp}>
                         <Text style={styles.textBlack}>Don't have account? </Text>
-                        <Text style={styles.textOrange}>Sign Up</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity 
+                            style={styles.touchable}
+                            onPress={signUp}
+                        >
+                            <Text style={styles.textOrange}>Sign Up</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </SafeAreaView>
             <Image
@@ -106,5 +111,10 @@ const styles = StyleSheet.create({
     },
     image: {
         marginTop: 70
+    },
+    viewSignUp:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 })

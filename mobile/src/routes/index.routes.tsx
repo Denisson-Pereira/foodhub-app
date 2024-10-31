@@ -4,6 +4,7 @@ import { LoginView } from "../screens/login/view";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { WelcomeView } from "../screens/welcome/view";
+import { SignUpView } from "../screens/signUp/view";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export default function Routes() {
                     <>
                         <Stack.Screen name="welcome" component={WelcomeView} />
                         <Stack.Screen name="login" component={LoginView} />
+                        <Stack.Screen name="register" component={SignUpView} />
                     </>
                 )}
             </Stack.Navigator>

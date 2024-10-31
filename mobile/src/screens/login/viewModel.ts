@@ -3,9 +3,9 @@ import { loginService } from "../../services/loginService";
 import { useFoodHubContext } from "../../context";
 import { useNavigate } from "../../hooks/useNavigate";
 import { ILoginModel } from "./model";
-import { Alert } from "react-native";
 import { ILogin } from "../../models/ILogin";
-import { useFillAllFields } from "../../hooks/useFillAllFields";
+import { fillAllFields } from "../../helpers/fillAllFields";
+
 
 export const useLoginViewModel = (): ILoginModel => {
     const [login, setLogin] = useState<string>('');
@@ -19,8 +19,8 @@ export const useLoginViewModel = (): ILoginModel => {
     const { navigate } = useNavigate();
 
     const onSubmit = async () => {
-        const errorMessage = useFillAllFields(login, password);
-        if(!errorMessage) {
+        const errorMessage = fillAllFields(login, password);
+        if(errorMessage) {
             setError(errorMessage);
             return;
         }
@@ -44,5 +44,9 @@ export const useLoginViewModel = (): ILoginModel => {
         }
     };
 
-    return { login, password, setLogin, setPassword, onSubmit, isLoading, setIsLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError };
+    const signUp = () => {
+        navigate('register');
+    }
+
+    return { login, password, setLogin, setPassword, onSubmit, isLoading, setIsLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp };
 };
