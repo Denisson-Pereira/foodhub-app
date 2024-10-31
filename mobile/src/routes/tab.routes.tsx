@@ -1,8 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { Feather, FontAwesome } from "@expo/vector-icons";
-import StackRoutes from "./stack.routes";
+import { FontAwesome, FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { Teste } from "../screens/Teste";
-import { Home } from "../screens/Home";
+import { HomeView } from "../screens/home/view";
 
 const Tab = createBottomTabNavigator();
 
@@ -10,25 +9,17 @@ export const TabRoutes = () => {
     return (
         <Tab.Navigator
             screenOptions={{
-                headerShown: true,
-                headerStyle: {
-                    backgroundColor: '#00A6EB',
-                },
-                headerTintColor: '#fff',
-                tabBarStyle: {
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: 90,
-                    backgroundColor: '#ffffff',
-                },
-                tabBarActiveTintColor: '#00A6EB',
+                headerShown: false,
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: "#FE724C",
+                tabBarInactiveTintColor: "#D3D1D8",
             }}
         >
             <Tab.Screen
-                name='Teste'
-                component={Home}
+                name='homeView'
+                component={HomeView}
                 options={{
-                    tabBarIcon: ({ color, size }) => <Feather name='home' color={color} size={size} />
+                    tabBarIcon: ({color, size}) => <Ionicons name='compass' color={color} size={30} />
                 }}
             />
 

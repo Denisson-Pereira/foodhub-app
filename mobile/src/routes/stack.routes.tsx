@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home } from "../screens/Home";
 import { LoginView } from "../screens/login/view";
 import { WelcomeView } from "../screens/welcome/view";
+import { HomeView } from "../screens/home/view";
 
 const Stack = createStackNavigator();
 
@@ -30,7 +30,7 @@ export default function StackRoutes() {
 
             <Stack.Screen 
                 name="home"
-                component={Home}
+                component={HomeView}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
