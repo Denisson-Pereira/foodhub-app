@@ -7,7 +7,7 @@ export const LoginView = () => {
 
     useEffect(() => {
         if(error) {
-            Alert.alert("Erro", error);
+            Alert.alert("Erro", error, [{ text: "OK", onPress: () => setError(null)}]);
         }
     }, [error])
 
@@ -34,6 +34,7 @@ export const LoginView = () => {
                         <Text style={styles.text}>Password</Text>
                         <TextInput
                             style={isPasswordFocused ? styles.inputFocused : styles.input}
+                            secureTextEntry={true}
                             placeholder='Password'
                             value={password}
                             onChangeText={setPassword}
