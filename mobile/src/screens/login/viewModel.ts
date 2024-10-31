@@ -13,7 +13,7 @@ export const useLoginViewModel = (): ILoginModel => {
     const [isLoginFocused, setIsLoginFocused] = useState<boolean>(false);
     const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const { setUser } = useFoodHubContext();
     const { navigate } = useNavigate();
@@ -42,7 +42,7 @@ export const useLoginViewModel = (): ILoginModel => {
 
     const handleLogin = async () => {
         setLoading(true); 
-        await new Promise(resolve => setTimeout(resolve, 3000)); 
+        await new Promise(resolve => setTimeout(resolve, 2000)); 
         await onSubmit(); 
         setLoading(false); 
     };
@@ -51,5 +51,5 @@ export const useLoginViewModel = (): ILoginModel => {
         navigate('register');
     }
 
-    return { login, password, setLogin, setPassword, onSubmit,loading, setLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin };
+    return { login, password, setLogin, setPassword,loading, setLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin };
 };

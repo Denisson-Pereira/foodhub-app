@@ -38,7 +38,7 @@ export const useSignUpViewModel = (): ISignUpModel => {
 
     const handleRegister = async () => {
         setRegistering(true);
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
         await onSubmit();
         setRegistering(false);
     }

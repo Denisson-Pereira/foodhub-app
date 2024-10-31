@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useLoginViewModel } from './viewModel';
-import { Alert, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { CustomInput } from '../../custom/customInput';
 import { CustomButton } from '../../custom/customButton';
 import { CustomBackground } from '../../custom/customBackground';
 
 export const LoginView = () => {
-    const { login, password, setLogin, setPassword, onSubmit, isLoginFocused, loading, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin } = useLoginViewModel();
+    const { login, password, setLogin, setPassword, isLoginFocused, loading, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin } = useLoginViewModel();
 
     useEffect(() => {
         if (error) {
             Alert.alert("Erro", error, [{ text: "OK", onPress: () => setError(null) }]);
         }
     }, [error]);
-
-
 
     return (
         <CustomBackground>
