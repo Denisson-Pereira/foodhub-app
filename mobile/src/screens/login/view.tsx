@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
 import { useLoginViewModel } from './viewModel'
 import { Alert, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { CustomInput } from '../../custom/customInput';
+import { CustomButton } from '../../custom/customButton';
+import { CustomBackground } from '../../custom/customBackground';
+
 
 export const LoginView = () => {
     const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError } = useLoginViewModel();
@@ -12,32 +16,30 @@ export const LoginView = () => {
     }, [error])
 
     return (
-        <ImageBackground
-            style={[styles.safe]}
-            source={require('../../assets/bgLogin.png')}
-        >
+        <CustomBackground>
             <Text style={styles.title}>Login</Text>
             <SafeAreaView>
                 <View style={styles.viewContainer}>
                     <View style={styles.viewField}>
                         <Text style={styles.text}>E-mail</Text>
-                        <TextInput
-                            style={isLoginFocused ? styles.inputFocused : styles.input}
+                        <CustomInput 
                             placeholder='You email or login'
                             value={login}
                             onChangeText={setLogin}
+                            secureTextEntry={false}
+                            isFocused={isLoginFocused}
                             onFocus={() => setIsLoginFocused(true)}
                             onBlur={() => setIsLoginFocused(false)}
                         />
                     </View>
                     <View style={styles.viewField}>
                         <Text style={styles.text}>Password</Text>
-                        <TextInput
-                            style={isPasswordFocused ? styles.inputFocused : styles.input}
-                            secureTextEntry={true}
+                        <CustomInput 
                             placeholder='Password'
                             value={password}
                             onChangeText={setPassword}
+                            secureTextEntry={true}
+                            isFocused={isPasswordFocused}
                             onFocus={() => setIsPasswordFocused(true)}
                             onBlur={() => setIsPasswordFocused(false)}
                         />
@@ -45,15 +47,11 @@ export const LoginView = () => {
                     <TouchableOpacity style={styles.touchable}>
                         <Text style={styles.textOrange}>Forgot password?</Text>
                     </TouchableOpacity>
-                    <View style={styles.viewBtn}>
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={onSubmit}
-                            disabled={isLoading}
-                        >
-                            <Text style={styles.textBtn}>LOGIN</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <CustomButton 
+                        title='LOGIN'
+                        onPress={onSubmit}
+                        disabled={isLoading}
+                    />
                     <TouchableOpacity style={styles.touchable}>
                         <Text style={styles.textBlack}>Don't have account? </Text>
                         <Text style={styles.textOrange}>Sign Up</Text>
@@ -64,7 +62,7 @@ export const LoginView = () => {
                 source={require('../../assets/signin.png')}
                 style={styles.image}
             />
-        </ImageBackground>
+        </CustomBackground>
 
     )
 }
@@ -87,24 +85,6 @@ const styles = StyleSheet.create({
     viewField: {
         gap: 10,
     },
-    input: {
-        borderWidth: 1,
-        borderColor: '#E1E1E1',
-        height: 70,
-        borderRadius: 10,
-        padding: 10,
-        fontSize: 20,
-        fontWeight: '500',
-    },
-    inputFocused: {
-        borderWidth: 2,
-        borderColor: '#FE724C',
-        height: 70,
-        borderRadius: 10,
-        padding: 10,
-        fontSize: 20,
-        fontWeight: '500',
-    },
     text: {
         color: '#9e9e9e',
         fontWeight: '500',
@@ -124,33 +104,6 @@ const styles = StyleSheet.create({
     textOrange: {
         color: '#FE724C',
         fontWeight: '600',
-    },
-    viewBtn: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    button: {
-        backgroundColor: '#FE724C',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 260,
-        height: 70,
-        borderRadius: 50,
-        // Estilos de sombra para iOS
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.5,
-        // Estilo de elevação para Android
-        elevation: 5,
-    },
-    textBtn: {
-        color: '#ffffff',
-        fontSize: 15,
-        fontWeight: '600'
     },
     textBlack: {
         color: '#7e7e7e',
