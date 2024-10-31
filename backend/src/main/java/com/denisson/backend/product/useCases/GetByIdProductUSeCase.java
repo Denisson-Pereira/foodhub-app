@@ -12,7 +12,7 @@ public class GetByIdProductUSeCase extends GetByIdUseCase<Product>{
 
     @Override
     protected String getNameEntity() {
-        return "String";
+        return "Product";
     }
     
 }
