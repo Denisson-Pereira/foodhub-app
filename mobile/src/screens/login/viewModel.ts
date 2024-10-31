@@ -5,6 +5,7 @@ import { useNavigate } from "../../hooks/useNavigate";
 import { ILoginModel } from "./model";
 import { Alert } from "react-native";
 import { ILogin } from "../../models/ILogin";
+import { useFillAllFields } from "../../hooks/useFillAllFields";
 
 export const useLoginViewModel = (): ILoginModel => {
     const [login, setLogin] = useState<string>('');
@@ -18,8 +19,9 @@ export const useLoginViewModel = (): ILoginModel => {
     const { navigate } = useNavigate();
 
     const onSubmit = async () => {
-        if (!login || !password) {
-            Alert.alert("Erro", "Por favor, preencha o login e a senha.");
+        const errorMessage = useFillAllFields(login, password);
+        if(!errorMessage) {
+            setError(errorMessage);
             return;
         }
 
