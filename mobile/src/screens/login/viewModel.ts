@@ -10,10 +10,10 @@ import { fillAllFields } from "../../helpers/fillAllFields";
 export const useLoginViewModel = (): ILoginModel => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isLoginFocused, setIsLoginFocused] = useState<boolean>(false);
     const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const { setUser } = useFoodHubContext();
     const { navigate } = useNavigate();
@@ -24,8 +24,6 @@ export const useLoginViewModel = (): ILoginModel => {
             setError(errorMessage);
             return;
         }
-
-        setIsLoading(true);
 
         try {
             const loginData: ILogin = { login, password }
@@ -39,14 +37,19 @@ export const useLoginViewModel = (): ILoginModel => {
             }
         } catch (error) {
             console.log("Erro inesperado:", error);
-        } finally {
-            setIsLoading(false);
         }
+    };
+
+    const handleLogin = async () => {
+        setLoading(true); 
+        await new Promise(resolve => setTimeout(resolve, 3000)); 
+        await onSubmit(); 
+        setLoading(false); 
     };
 
     const signUp = () => {
         navigate('register');
     }
 
-    return { login, password, setLogin, setPassword, onSubmit, isLoading, setIsLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp };
+    return { login, password, setLogin, setPassword, onSubmit,loading, setLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin };
 };

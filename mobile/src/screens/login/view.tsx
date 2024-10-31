@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react'
-import { useLoginViewModel } from './viewModel'
-import { Alert, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { useLoginViewModel } from './viewModel';
+import { Alert, Dimensions, Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { CustomInput } from '../../custom/customInput';
 import { CustomButton } from '../../custom/customButton';
 import { CustomBackground } from '../../custom/customBackground';
 
 export const LoginView = () => {
-    const { login, password, setLogin, setPassword, onSubmit, isLoading, isLoginFocused, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp } = useLoginViewModel();
+    const { login, password, setLogin, setPassword, onSubmit, isLoginFocused, loading, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin } = useLoginViewModel();
 
     useEffect(() => {
         if (error) {
             Alert.alert("Erro", error, [{ text: "OK", onPress: () => setError(null) }]);
         }
-    }, [error])
+    }, [error]);
+
+
 
     return (
         <CustomBackground>
@@ -22,7 +24,7 @@ export const LoginView = () => {
                     <View style={styles.viewField}>
                         <Text style={styles.text}>E-mail</Text>
                         <CustomInput
-                            placeholder='You email or login'
+                            placeholder='Your email or login'
                             value={login}
                             onChangeText={setLogin}
                             secureTextEntry={false}
@@ -39,7 +41,7 @@ export const LoginView = () => {
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry={true}
-                            keyboardType='numeric'
+                            keyboardType='numeric' 
                             isFocused={isPasswordFocused}
                             onFocus={() => setIsPasswordFocused(true)}
                             onBlur={() => setIsPasswordFocused(false)}
@@ -48,13 +50,19 @@ export const LoginView = () => {
                     <TouchableOpacity style={styles.touchable}>
                         <Text style={styles.textOrange}>Forgot password?</Text>
                     </TouchableOpacity>
-                    <CustomButton
-                        title='LOGIN'
-                        onPress={onSubmit}
-                        disabled={isLoading}
-                    />
+
+                    {!loading ? (
+                        <CustomButton
+                            title='LOGIN'
+                            onPress={handleLogin} 
+                            disabled={loading} 
+                        />
+                    ) : (
+                        <ActivityIndicator size="large" color="#FE724C" style={styles.loader} /> 
+                    )}
+                    
                     <View style={styles.viewSignUp}>
-                        <Text style={styles.textBlack}>Don't have account? </Text>
+                        <Text style={styles.textBlack}>Don't have an account? </Text>
                         <TouchableOpacity 
                             style={styles.touchable}
                             onPress={signUp}
@@ -69,9 +77,8 @@ export const LoginView = () => {
                 style={styles.image}
             />
         </CustomBackground>
-
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -112,9 +119,12 @@ const styles = StyleSheet.create({
     image: {
         marginTop: 70
     },
-    viewSignUp:{
+    viewSignUp: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
     },
-})
+    loader: {
+        marginTop: 20,
+    }
+});
