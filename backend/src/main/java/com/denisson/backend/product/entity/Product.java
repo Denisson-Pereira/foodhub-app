@@ -13,8 +13,7 @@ public class Product extends AbstractEntity {
     private String establishment;
     private String image;
 
-    public Product(Long id, String name, String evaluation, String description, String price, String category, String establishment,
-        String image) {
+    public Product(Long id, String name, String evaluation, String description, String price, String category, String establishment,String image) {
         super(id, name);
         this.evaluation = evaluation;
         this.description = description;
