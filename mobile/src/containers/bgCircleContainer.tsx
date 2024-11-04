@@ -1,14 +1,14 @@
 import React from "react";
 import { Dimensions, ImageBackground, StyleSheet } from "react-native";
 
-interface IBackground {
+interface Props {
     children: React.ReactNode;
 }
 
-export const CustomBackground: React.FC<IBackground> = ({ children }) => {
+export const BgCircleContainer: React.FC<Props> = ({ children }) => {
     return (
         <ImageBackground
-            style={styles.safe} 
+            style={styles.bg}
             source={require('../assets/bgLogin.png')}
         >
             {children}
@@ -17,7 +17,7 @@ export const CustomBackground: React.FC<IBackground> = ({ children }) => {
 }
 
 const styles = StyleSheet.create({
-    safe: {
+    bg: {
         height: Dimensions.get("window").height,
         overflow: 'hidden',
         justifyContent: 'center',

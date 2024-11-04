@@ -3,8 +3,8 @@ import { useLoginViewModel } from './viewModel';
 import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { CustomInput } from '../../custom/customInput';
 import { CustomButton } from '../../custom/customButton';
-import { CustomBackground } from '../../custom/customBackground';
 import { MainContainer } from '../../containers/mainContainer'
+import { BgCircleContainer } from '../../containers/bgCircleContainer';
 
 export const LoginView = () => {
     const { login, password, setLogin, setPassword, isLoginFocused, loading, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin } = useLoginViewModel();
@@ -16,7 +16,7 @@ export const LoginView = () => {
     }, [error]);
 
     return (
-        <CustomBackground>
+        <BgCircleContainer>
             <MainContainer>
                 <Text style={styles.title}>Login</Text>
                 <SafeAreaView>
@@ -76,7 +76,7 @@ export const LoginView = () => {
                     style={styles.image}
                 />
             </MainContainer>
-        </CustomBackground>
+        </BgCircleContainer>
     );
 };
 

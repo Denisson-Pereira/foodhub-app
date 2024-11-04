@@ -31,17 +31,8 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 10,
-        shadowColor: '#000000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.15,
-        shadowRadius: 2,
-        elevation: 5,
     },
     btn: {
         fontSize: 15,
-        marginLeft: 5,
     },
 });

@@ -1,15 +1,19 @@
 import { ScrollView, Text } from "react-native";
 import { MainContainer } from "../../containers/mainContainer";
+import { HeaderHomeView } from "../../components/headerHome/view";
+import { BgCleanContainer } from "../../containers/bgCleanContainer";
 
 export const HomeView = () => {
 
     return (
-        <MainContainer>
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-            >
-                <Text>home</Text>
-            </ScrollView>
-        </MainContainer>
+        <BgCleanContainer>
+            <MainContainer>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                >
+                    <HeaderHomeView />
+                </ScrollView>
+            </MainContainer>
+        </BgCleanContainer>
     );
 }
