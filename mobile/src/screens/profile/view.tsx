@@ -1,10 +1,10 @@
 import { ScrollView, Text } from "react-native";
-import { MainContainer } from "../../containers/mainContainer";
-import { CustomButton } from "../../custom/customButton";
 import { logoutService } from "../../services/logoutService";
 import { useNavigate } from "../../hooks/useNavigate";
 import { useFoodHubContext } from "../../context";
 import { IUser } from "../../models/IUser";
+import { MainContainer } from "../../containers";
+import { CustomButton } from "../../custom";
 
 export const ProfileView = () => {
     const { navigate } = useNavigate();

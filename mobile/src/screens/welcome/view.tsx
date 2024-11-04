@@ -1,6 +1,6 @@
-import { Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useWelcomeViewModel } from "./viewModel";
-import { MainContainer } from "../../containers/mainContainer" 
+import { MainContainer } from "../../containers";
 
 export const WelcomeView = () => {
     const { login } = useWelcomeViewModel();

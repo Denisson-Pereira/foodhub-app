@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLoginViewModel } from './viewModel';
 import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
-import { CustomInput } from '../../custom/customInput';
-import { CustomButton } from '../../custom/customButton';
-import { MainContainer } from '../../containers/mainContainer'
-import { BgCircleContainer } from '../../containers/bgCircleContainer';
+import { BgCircleContainer, MainContainer } from '../../containers';
+import { CustomButton, CustomInput } from '../../custom';
 
 export const LoginView = () => {
     const { login, password, setLogin, setPassword, isLoginFocused, loading, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin } = useLoginViewModel();

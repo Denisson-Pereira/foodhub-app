@@ -1,10 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { HomeView } from "../screens/home/view";
-import { CartView } from "../screens/cart/view";
-import { FavoriteView } from "../screens/favorite/view";
-import { MapView } from "../screens/map/view";
-import { ProfileView } from "../screens/profile/view";
+import { CartView, FavoriteView, HomeView, MapView, ProfileView } from "../screens";
 
 const Tab = createBottomTabNavigator();
 

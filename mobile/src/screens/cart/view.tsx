@@ -1,7 +1,7 @@
 import { ScrollView, Text } from "react-native";
-import { CustomButtonUp } from "../../custom/customButtonUp";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MainContainer } from "../../containers/mainContainer";
+import { CustomButtonUp } from "../../custom";
 
 export const CartView = () => {
     return (

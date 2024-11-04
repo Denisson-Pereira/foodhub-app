@@ -1,10 +1,8 @@
 import { useFoodHubContext } from "../context";
 import { TabRoutes } from "./tab.routes";
-import { LoginView } from "../screens/login/view";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { WelcomeView } from "../screens/welcome/view";
-import { SignUpView } from "../screens/signUp/view";
+import { WelcomeView, LoginView, SignUpView } from "../screens";
 
 const Stack = createStackNavigator();
 

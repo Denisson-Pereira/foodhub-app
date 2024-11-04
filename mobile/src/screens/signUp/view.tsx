@@ -1,10 +1,8 @@
 import { ActivityIndicator, Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSignUpViewModel } from "./viewModel"
-import { CustomButton } from "../../custom/customButton";
-import { CustomInput } from "../../custom/customInput";
 import { useEffect } from "react";
-import { MainContainer } from '../../containers/mainContainer'
-import { BgCircleContainer } from "../../containers/bgCircleContainer";
+import { BgCircleContainer, MainContainer } from "../../containers";
+import { CustomButton, CustomInput } from "../../custom";
 
 export const SignUpView = () => {
     const { name, login, password, isNameFocused, isLoginFocused, isPasswordFocused, error, setError, handleRegister, registering, forLogin, setIsNameFocused, setIsLoginFocused, setIsPasswordFocused, setName, setPassword, setLogin } = useSignUpViewModel();

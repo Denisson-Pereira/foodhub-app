@@ -1,7 +1,6 @@
 import { ScrollView, Text } from "react-native";
-import { MainContainer } from "../../containers/mainContainer";
+import { BgCleanContainer, MainContainer } from "../../containers";
 import { HeaderHomeView } from "../../components/headerHome/view";
-import { BgCleanContainer } from "../../containers/bgCleanContainer";
 
 export const HomeView = () => {
 

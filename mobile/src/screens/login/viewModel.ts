@@ -6,7 +6,6 @@ import { ILoginModel } from "./model";
 import { ILogin } from "../../models/ILogin";
 import { fillAllFields } from "../../helpers/fillAllFields";
 
-
 export const useLoginViewModel = (): ILoginModel => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');

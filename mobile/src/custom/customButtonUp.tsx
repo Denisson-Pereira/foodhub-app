@@ -19,7 +19,6 @@ export const CustomButtonUp = ({ IconComponent, icon, url }: { IconComponent: Co
 
 const styles = StyleSheet.create({
     view: {
-        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
     },
