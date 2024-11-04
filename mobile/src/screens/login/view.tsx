@@ -4,6 +4,7 @@ import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, A
 import { CustomInput } from '../../custom/customInput';
 import { CustomButton } from '../../custom/customButton';
 import { CustomBackground } from '../../custom/customBackground';
+import { MainContainer } from '../../containers/mainContainer'
 
 export const LoginView = () => {
     const { login, password, setLogin, setPassword, isLoginFocused, loading, isPasswordFocused, setIsLoginFocused, setIsPasswordFocused, error, setError, signUp, handleLogin } = useLoginViewModel();
@@ -16,64 +17,65 @@ export const LoginView = () => {
 
     return (
         <CustomBackground>
-            <Text style={styles.title}>Login</Text>
-            <SafeAreaView>
-                <View style={styles.viewContainer}>
-                    <View style={styles.viewField}>
-                        <Text style={styles.text}>E-mail</Text>
-                        <CustomInput
-                            placeholder='Your email or login'
-                            value={login}
-                            onChangeText={setLogin}
-                            secureTextEntry={false}
-                            keyboardType='email-address'
-                            isFocused={isLoginFocused}
-                            onFocus={() => setIsLoginFocused(true)}
-                            onBlur={() => setIsLoginFocused(false)}
-                        />
-                    </View>
-                    <View style={styles.viewField}>
-                        <Text style={styles.text}>Password</Text>
-                        <CustomInput
-                            placeholder='Password'
-                            value={password}
-                            onChangeText={setPassword}
-                            secureTextEntry={true}
-                            keyboardType='numeric' 
-                            isFocused={isPasswordFocused}
-                            onFocus={() => setIsPasswordFocused(true)}
-                            onBlur={() => setIsPasswordFocused(false)}
-                        />
-                    </View>
-                    <TouchableOpacity style={styles.touchable}>
-                        <Text style={styles.textOrange}>Forgot password?</Text>
-                    </TouchableOpacity>
-
-                    {!loading ? (
-                        <CustomButton
-                            title='LOGIN'
-                            onPress={handleLogin} 
-                            disabled={loading} 
-                        />
-                    ) : (
-                        <ActivityIndicator size="large" color="#FE724C" style={styles.loader} /> 
-                    )}
-                    
-                    <View style={styles.viewSignUp}>
-                        <Text style={styles.textBlack}>Don't have an account? </Text>
-                        <TouchableOpacity 
-                            style={styles.touchable}
-                            onPress={signUp}
-                        >
-                            <Text style={styles.textOrange}>Sign Up</Text>
+            <MainContainer>
+                <Text style={styles.title}>Login</Text>
+                <SafeAreaView>
+                    <View style={styles.viewContainer}>
+                        <View style={styles.viewField}>
+                            <Text style={styles.text}>E-mail</Text>
+                            <CustomInput
+                                placeholder='Your email or login'
+                                value={login}
+                                onChangeText={setLogin}
+                                secureTextEntry={false}
+                                keyboardType='email-address'
+                                isFocused={isLoginFocused}
+                                onFocus={() => setIsLoginFocused(true)}
+                                onBlur={() => setIsLoginFocused(false)}
+                            />
+                        </View>
+                        <View style={styles.viewField}>
+                            <Text style={styles.text}>Password</Text>
+                            <CustomInput
+                                placeholder='Password'
+                                value={password}
+                                onChangeText={setPassword}
+                                secureTextEntry={true}
+                                keyboardType='numeric'
+                                isFocused={isPasswordFocused}
+                                onFocus={() => setIsPasswordFocused(true)}
+                                onBlur={() => setIsPasswordFocused(false)}
+                            />
+                        </View>
+                        <TouchableOpacity style={styles.touchable}>
+                            <Text style={styles.textOrange}>Forgot password?</Text>
                         </TouchableOpacity>
+                        {!loading ? (
+                            <CustomButton
+                                title='LOGIN'
+                                onPress={handleLogin}
+                                disabled={loading}
+                            />
+                        ) : (
+                            <ActivityIndicator size="large" color="#FE724C" style={styles.loader} />
+                        )}
+                
+                        <View style={styles.viewSignUp}>
+                            <Text style={styles.textBlack}>Don't have an account? </Text>
+                            <TouchableOpacity
+                                style={styles.touchable}
+                                onPress={signUp}
+                            >
+                                <Text style={styles.textOrange}>Sign Up</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-            </SafeAreaView>
-            <Image
-                source={require('../../assets/signin.png')}
-                style={styles.image}
-            />
+                </SafeAreaView>
+                <Image
+                    source={require('../../assets/signin.png')}
+                    style={styles.image}
+                />
+            </MainContainer>
         </CustomBackground>
     );
 };

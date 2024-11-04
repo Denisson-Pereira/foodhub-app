@@ -1,6 +1,6 @@
-import { Entypo } from "@expo/vector-icons";
 import { Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useWelcomeViewModel } from "./viewModel";
+import { MainContainer } from "../../containers/mainContainer" 
 
 export const WelcomeView = () => {
     const { login } = useWelcomeViewModel();
@@ -10,24 +10,22 @@ export const WelcomeView = () => {
             style={[styles.safe]}
             source={require('../../assets/welcome.png')}
         >
-            <Image 
-                source={require('../../assets/Group.png')} 
-                style={styles.image}
-            />
-            <View style={styles.view}>
-                <TouchableOpacity
-                    style={styles.loginField}
-                    onPress={login}
-                >
-                    <Text style={styles.text}>Begin your journey with us today</Text>
-                </TouchableOpacity>
-                <View style={styles.signInField}>
-                    <Text style={styles.text}>Already have an account?</Text>
-                    <TouchableOpacity>
-                        <Text style={styles.underlineText}>Sign In</Text>
+            <MainContainer>
+                <View style={styles.view}>
+                    <TouchableOpacity
+                        style={styles.loginField}
+                        onPress={login}
+                    >
+                        <Text style={styles.text}>Begin your journey with us today</Text>
                     </TouchableOpacity>
+                    <View style={styles.signInField}>
+                        <Text style={styles.text}>Already have an account?</Text>
+                        <TouchableOpacity>
+                            <Text style={styles.underlineText}>Sign In</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            </MainContainer>
         </ImageBackground>
     );
 }
@@ -39,13 +37,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    image: {
-        width: '100%',
-        marginTop: 600,
-    },
     view: {
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 600,
     },
     loginField: {
         flexDirection: 'row',
@@ -68,7 +63,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
     },
     signInField: {
-        marginTop: 10,
+        marginTop: 20,
         flexDirection: 'row',
         gap: 5,
     }

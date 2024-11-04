@@ -21,6 +21,5 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height,
         overflow: 'hidden',
         justifyContent: 'center',
-        padding: 25
     },
 });
