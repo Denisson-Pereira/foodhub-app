@@ -1,18 +1,24 @@
-import { ScrollView, Text } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { BgCleanContainer, MainContainer } from "../../containers";
-import { HeaderHomeView } from "../../components/headerHome/view";
+import { FindBarView, HeaderHomeView } from "../../components";
+
 
 export const HomeView = () => {
 
     return (
         <BgCleanContainer>
             <MainContainer>
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                >
-                    <HeaderHomeView />
-                </ScrollView>
+                    <View style={styles.view}>
+                        <HeaderHomeView />
+                        <FindBarView />
+                    </View>
             </MainContainer>
         </BgCleanContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    view: {
+        gap: 10
+    },
+});
