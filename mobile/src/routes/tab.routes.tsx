@@ -25,7 +25,7 @@ export const TabRoutes = () => {
                 name='homeView'
                 component={HomeView}
                 options={{
-                    tabBarIcon: ({ color, size }) => <Ionicons name='compass' color={color} size={30} />
+                    tabBarIcon: ({ color }) => <Ionicons name='compass' color={color} size={30} />
                 }}
             />
 
@@ -33,7 +33,7 @@ export const TabRoutes = () => {
                 name='mapView'
                 component={MapView}
                 options={{
-                    tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='map-marker' color={color} size={30} />
+                    tabBarIcon: ({ color }) => <MaterialCommunityIcons name='map-marker' color={color} size={30} />
                 }}
             />
 
@@ -41,7 +41,7 @@ export const TabRoutes = () => {
                 name="cartView"
                 component={CartView}
                 options={{
-                    tabBarIcon: ({ color, size }) => <FontAwesome name='cart-arrow-down' color={color} size={size} />
+                    tabBarIcon: ({ color }) => <FontAwesome name='cart-arrow-down' color={color} size={30} />
                 }}
             />
 
@@ -57,7 +57,7 @@ export const TabRoutes = () => {
                 name='profileView'
                 component={ProfileView}
                 options={{
-                    tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='bell' color={color} size={30} />
+                    tabBarIcon: ({ color }) => <MaterialCommunityIcons name='bell' color={color} size={30} />
                 }}
             />
 
