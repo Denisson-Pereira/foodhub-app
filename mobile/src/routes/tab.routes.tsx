@@ -1,9 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { Teste } from "../screens/Teste";
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { HomeView } from "../screens/home/view";
 import { CartView } from "../screens/cart/view";
-import { useRoute } from "@react-navigation/native";
+import { FavoriteView } from "../screens/favorite/view";
+import { MapView } from "../screens/map/view";
+import { ProfileView } from "../screens/profile/view";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +17,7 @@ export const TabRoutes = () => {
                 tabBarActiveTintColor: "#FE724C",
                 tabBarInactiveTintColor: "#D3D1D8",
                 tabBarStyle: {
-                    display: route.name === 'cart' ? 'none' : 'flex',
+                    display: route.name === 'cartView' || route.name === 'favorite' || route.name === 'mapView' ? 'none' : 'flex',
                 },
             })}
         >
@@ -29,20 +30,38 @@ export const TabRoutes = () => {
             />
 
             <Tab.Screen
-                name="teste"
-                component={Teste}
+                name='mapView'
+                component={MapView}
+                options={{
+                    tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='map-marker' color={color} size={30} />
+                }}
+            />
+
+            <Tab.Screen
+                name="cartView"
+                component={CartView}
+                options={{
+                    tabBarIcon: ({ color, size }) => <FontAwesome name='cart-arrow-down' color={color} size={size} />
+                }}
+            />
+
+            <Tab.Screen
+                name="favorite"
+                component={FavoriteView}
                 options={{
                     tabBarIcon: ({ color, size }) => <FontAwesome name='heart' color={color} size={size} />
                 }}
             />
 
             <Tab.Screen
-                name="cart"
-                component={CartView}
+                name='profileView'
+                component={ProfileView}
                 options={{
-                    tabBarIcon: ({ color, size }) => <FontAwesome name='cart-arrow-down' color={color} size={size} />
+                    tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='bell' color={color} size={30} />
                 }}
             />
+
+
         </Tab.Navigator>
     );
 };
