@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     view: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 5,
+        marginHorizontal: 5,
+        marginVertical: 15,
         gap: 5
     },
     img: {

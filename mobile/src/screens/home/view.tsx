@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { BgCleanContainer, MainContainer } from "../../containers";
-import { CategoriesView, FindBarView, HeaderHomeView } from "../../components";
+import { CategoriesView, EstablishmentView, FindBarView, HeaderHomeView } from "../../components";
 
 
 export const HomeView = () => {
@@ -12,6 +12,7 @@ export const HomeView = () => {
                         <HeaderHomeView />
                         <FindBarView />
                         <CategoriesView />
+                        <EstablishmentView />
                     </View>
             </MainContainer>
         </BgCleanContainer>
