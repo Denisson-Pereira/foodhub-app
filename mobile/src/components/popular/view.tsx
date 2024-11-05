@@ -22,7 +22,7 @@ export const PopularView = () => {
 
         getDates();
         filter();
-    }, []);
+    }, [popularItens]);
 
     return (
         <View style={styles.container}>
