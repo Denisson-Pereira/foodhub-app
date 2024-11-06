@@ -47,8 +47,9 @@ export const AllProductsView = () => {
                             <AntDesign name="heart" color='white' size={30} />
                         </TouchableOpacity>
                         <View style={styles.star}>
-                            <MaterialCommunityIcons name="star" color='#FFC529' />
                             <Text style={styles.priceBlack}>{item.evaluation}</Text>
+                            <MaterialCommunityIcons name="star" color='#FFC529' />
+                            <Text style={styles.plus}>(25+)</Text>
                         </View>
                         <View style={styles.info}>
                             <View style={styles.viewName}>
@@ -84,14 +85,20 @@ const styles = StyleSheet.create({
     },
     scrollContainer: {
         paddingHorizontal: 5,
-        gap: 10,
+        gap: 20,
         marginTop: 30,
         paddingBottom: 80
     },
     card: {
         borderRadius: 10,
-        overflow: 'hidden',
         backgroundColor: '#fff',
+        // Propriedades de sombra para iOS
+        shadowColor: '#00000050',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4.65,
+        // Propriedade de sombra para Android
+        elevation: 8,
 
     },
     image: {
@@ -138,12 +145,13 @@ const styles = StyleSheet.create({
         top: 180,
         left: 10,
         backgroundColor: '#ffffff',
-        padding: 5,
+        padding: 7,
         borderRadius: 50,
+        gap: 3
     },
     info: {
         padding: 10,
-        gap: 7,
+        gap: 8,
     },
     viewName: {
         flexDirection: 'row',
@@ -159,7 +167,12 @@ const styles = StyleSheet.create({
         color: '#7E8392',
     },
     name: {
-        fontSize: 15,
+        fontSize: 20,
         fontWeight: 'bold',
+        paddingVertical: 5
     },
+    plus: {
+        fontSize: 10,
+        color: '#9796A1'
+    }
 });
