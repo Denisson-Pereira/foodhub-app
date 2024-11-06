@@ -98,16 +98,16 @@ const styles = StyleSheet.create({
     shadowBox: {
         backgroundColor: '#fff',
         padding: 20,
-        borderRadius: 10,
+        borderRadius: 30,
         marginBottom: 20,
         // Propriedades de sombra para iOS
-        shadowColor: '#000',
+        shadowColor: '#00000050',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 4.65,
         // Propriedade de sombra para Android
         elevation: 8,
-      },
+    },
     containerRow: {
         flexDirection: 'row',
         gap: 5,
@@ -151,5 +151,5 @@ const styles = StyleSheet.create({
     },
     time: {
         color: colors.orange
-    }
+    },
 });
