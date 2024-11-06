@@ -4,9 +4,11 @@ import { abstractGetService } from "../../services/abstractGetService";
 import { useEstablishmentViewModel } from "./viewModel";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { upperCase } from "../../helpers/upperCase";
+import { useNavigate } from "../../hooks/useNavigate";
 
 export const EstablishmentView = () => {
     const { establishment, setEstablishment } = useEstablishmentViewModel();
+    const { navigate } = useNavigate();
 
     useEffect(() => {
         async function getDates() {
@@ -20,7 +22,10 @@ export const EstablishmentView = () => {
         <View style={styles.container}>
             <View style={styles.textContainer}>
                 <Text style={styles.title}>Featured Restaurants</Text>
-                <TouchableOpacity style={styles.textContainer}>
+                <TouchableOpacity 
+                    style={styles.textContainer}
+                    onPress={() => navigate('AllEstablishments')}
+                >
                     <Text style={styles.textOrange}>View All</Text>
                     <AntDesign name="right" color='#FE724C' size={10} />
                 </TouchableOpacity>
@@ -104,11 +109,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
         backgroundColor: '#fff',
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 5,
     },
     textContainer: {
         flexDirection: 'row',

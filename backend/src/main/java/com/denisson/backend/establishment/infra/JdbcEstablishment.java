@@ -30,7 +30,8 @@ public class JdbcEstablishment implements AbstractRepository<Establishment>{
         rs.getString("tag_1"),
         rs.getString("tag_2"),
         rs.getString("tag_3"),
-        rs.getString("cover")
+        rs.getString("cover"),
+        rs.getString("image")
     );
 
     @Override

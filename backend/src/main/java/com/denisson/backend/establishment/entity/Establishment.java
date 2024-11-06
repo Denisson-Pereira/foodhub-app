@@ -14,8 +14,15 @@ public class Establishment extends AbstractEntity {
     private String tag_2;
     private String tag_3;
     private String cover;
+    private String image;
 
-    public Establishment(String evaluation, String description, String price, String time, String tag_1, String tag_2, String tag_3, String cover) {
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
+    public Establishment(String evaluation, String description, String price, String time, String tag_1, String tag_2, String tag_3, String cover, String image) {
         this.evaluation = evaluation;
         this.description = description;
         this.price = price;
@@ -24,8 +31,9 @@ public class Establishment extends AbstractEntity {
         this.tag_2 = tag_2;
         this.tag_3 = tag_3;
         this.cover = cover;
+        this.image = image;
     }
-    public Establishment(Long id, String name, String evaluation, String description, String price, String time, String tag_1, String tag_2, String tag_3, String cover) {
+    public Establishment(Long id, String name, String evaluation, String description, String price, String time, String tag_1, String tag_2, String tag_3, String cover, String image) {
         super(id, name);
         this.evaluation = evaluation;
         this.description = description;
@@ -35,6 +43,7 @@ public class Establishment extends AbstractEntity {
         this.tag_2 = tag_2;
         this.tag_3 = tag_3;
         this.cover = cover;
+        this.image = image;
     }
     public String getEvaluation() {
         return evaluation;

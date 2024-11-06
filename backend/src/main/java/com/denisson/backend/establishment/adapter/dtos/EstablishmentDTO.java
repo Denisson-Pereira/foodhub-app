@@ -11,7 +11,8 @@ public record EstablishmentDTO(
     String tag_1,
     String tag_2,
     String tag_3,
-    String cover
+    String cover,
+    String image
 
 ) implements AbstractDTOInterface {
 
