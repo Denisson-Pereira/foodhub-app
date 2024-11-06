@@ -3,11 +3,11 @@ import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { abstractGetByIdService } from "../../services/abstractGetByIdService";
 import { useProductsDetailsViewModel } from "./modelView";
 import { BgCleanContainer } from "../../containers";
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { pattersValues } from "../../helpers/pattersValues";
 
 export const ProductsDetails = () => {
-    const { product, id, route, setProduct } = useProductsDetailsViewModel();
+    const { product, id, setProduct } = useProductsDetailsViewModel();
 
     useEffect(() => {
         const fetchProduct = async () => {

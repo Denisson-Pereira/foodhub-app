@@ -8,5 +8,5 @@ export const useProductsDetailsViewModel = (): IProductsDetails => {
     const [product, setProduct] = useState<IProduct | null>(null);
     const route = useRoute<ProductsDetailsRouteProp>();
     const { id } = route.params;
-    return {product, route, id, setProduct, };
+    return {product, id, setProduct, };
 }

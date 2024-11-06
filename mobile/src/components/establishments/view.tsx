@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { abstractGetService } from "../../services/abstractGetService";
 import { useEstablishmentViewModel } from "./viewModel";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { upperCase } from "../../helpers/upperCase";
 
 export const EstablishmentView = () => {
@@ -18,7 +18,13 @@ export const EstablishmentView = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Featured Restaurants</Text>
+            <View style={styles.textContainer}>
+                <Text style={styles.title}>Featured Restaurants</Text>
+                <TouchableOpacity style={styles.textContainer}>
+                    <Text style={styles.textOrange}>View All</Text>
+                    <AntDesign name="right" color='#FE724C' size={10} />
+                </TouchableOpacity>
+            </View>
             <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
@@ -103,6 +109,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 4,
         elevation: 5,
+    },
+    textContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    textOrange: {
+        color: '#FE724C'
     },
     viewName: {
         flexDirection: 'row',

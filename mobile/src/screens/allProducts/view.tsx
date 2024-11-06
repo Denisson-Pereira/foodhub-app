@@ -1,50 +1,35 @@
-import { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { usePopularViewModel } from "./viewModel";
+import { BgProductsContainer } from "../../containers";
+import { colors } from "../../constants/colors";
+import { useEffect } from "react";
 import { abstractGetService } from "../../services/abstractGetService";
-import { IProduct } from "../../models/IProduct";
-import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import { useAllProductsViewModel } from "./viewModel";
 import { useNavigate } from "../../hooks/useNavigate";
 import { pattersValues } from "../../helpers/pattersValues";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 
-export const PopularView = () => {
-    const { popularItens, setPopularItens } = usePopularViewModel();
-    const [filterDates, setFilterDates] = useState<IProduct[]>([]);
+export const AllProductsView = () => {
+    const { products, setProducts } = useAllProductsViewModel();
     const { navigate } = useNavigate();
 
     useEffect(() => {
-        async function getDates() {
-            const response = await abstractGetService('products');
-            setPopularItens(response);
+        async function fetchDates() {
+            const responde = await abstractGetService('products');
+            setProducts(responde);
         }
-        getDates();
-    }, []);
-
-    useEffect(() => {
-        if (popularItens) {
-            const dates = popularItens.filter(item => parseFloat(item.evaluation) >= 4);
-            setFilterDates(dates);
-        }
-    }, [popularItens]);
+        fetchDates();
+    }, [])
 
     return (
-        <View style={styles.container}>
-            <View style={styles.textContainer}>
-                <Text style={styles.title}>Popular Items</Text>
-                <TouchableOpacity 
-                    style={styles.textContainer}
-                    onPress={() => navigate('AllProducts')}
-                >
-                    <Text style={styles.textOrange}>View All</Text>
-                    <AntDesign name="right" color='#FE724C' size={10} />
-                </TouchableOpacity>
-            </View>
+        <BgProductsContainer>
+            <Text style={styles.titleBlack}>Fast</Text>
+            <Text style={styles.titleOrange}>Food</Text>
+            <Text style={styles.titleText}>80 type of pizza</Text>
             <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContainer}
             >
-                {filterDates.map((item) => (
+                {products.map((item) => (
                     <TouchableOpacity
                         key={item.id}
                         style={styles.card}
@@ -76,25 +61,34 @@ export const PopularView = () => {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
-        </View>
+        </BgProductsContainer>
     );
-};
+}
 
 const styles = StyleSheet.create({
-    container: {
-        marginBottom: 200
+    titleBlack: {
+        fontSize: 50,
+        fontWeight: '700',
+        color: colors.black
     },
-    title: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginBottom: 15,
+    titleOrange: {
+        fontSize: 60,
+        fontWeight: '700',
+        color: colors.orange
+    },
+    titleText: {
+        fontSize: 20,
+        color: colors.grey,
+        fontWeight: '500'
+
     },
     scrollContainer: {
         paddingHorizontal: 5,
-        gap: 10
+        gap: 10,
+        marginTop: 30,
+        paddingBottom: 80
     },
     card: {
-        width: 180,
         borderRadius: 10,
         overflow: 'hidden',
         backgroundColor: '#fff',
@@ -104,35 +98,10 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
-    star: {
-        position: 'absolute',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        top: 180,
-        left: 10,
-        backgroundColor: '#ffffff',
-        padding: 5,
-        borderRadius: 50,
-    },
-    favorite: {
-        position: 'absolute',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        top: 10,
-        right: 10,
-        backgroundColor: '#ffffff5e',
-        padding: 5,
-        borderRadius: 50,
-    },
-    textContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    textOrange: {
-        color: '#FE724C'
+    image: {
+        width: '100%',
+        height: 200,
+        borderRadius: 20,
     },
     preco: {
         position: 'absolute',
@@ -146,7 +115,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     priceOrange: {
-        color: '#FE724C',
+        color: colors.orange,
         fontSize: 10,
     },
     priceBlack: {
@@ -154,10 +123,27 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 18,
     },
-    image: {
-        width: '100%',
-        height: 200,
-        borderRadius: 20,
+    favorite: {
+        position: 'absolute',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 10,
+        right: 10,
+        backgroundColor: '#ffffff5e',
+        padding: 5,
+        borderRadius: 50,
+    },
+    star: {
+        position: 'absolute',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 180,
+        left: 10,
+        backgroundColor: '#ffffff',
+        padding: 5,
+        borderRadius: 50,
     },
     info: {
         padding: 10,
