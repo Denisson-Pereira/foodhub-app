@@ -4,10 +4,12 @@ import { usePopularViewModel } from "./viewModel";
 import { abstractGetService } from "../../services/abstractGetService";
 import { IProduct } from "../../models/IProduct";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigate } from "../../hooks/useNavigate";
 
 export const PopularView = () => {
     const { popularItens, setPopularItens } = usePopularViewModel();
     const [filterDates, setFilterDates] = useState<IProduct[]>([]);
+    const { navigate } = useNavigate();
 
     useEffect(() => {
         async function getDates() {
@@ -33,7 +35,11 @@ export const PopularView = () => {
                 contentContainerStyle={styles.scrollContainer}
             >
                 {filterDates.map((item) => (
-                    <TouchableOpacity key={item.id} style={styles.card}>
+                    <TouchableOpacity 
+                        key={item.id} 
+                        style={styles.card}
+                        onPress={() => navigate('ProductsDetails', { id: item.id })}
+                    >
                         <Image
                             source={{ uri: item.image }}
                             style={styles.image}

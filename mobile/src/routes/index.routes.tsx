@@ -3,6 +3,8 @@ import { TabRoutes } from "./tab.routes";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { WelcomeView, LoginView, SignUpView } from "../screens";
+import StackRoutes from "./stack.routes";
+import { ProductsDetails } from "../screens/productsDetails/view";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +17,7 @@ export default function Routes() {
                 {user?.id ? (
                     <>
                         <Stack.Screen name="home" component={TabRoutes} />
+                        <Stack.Screen name="ProductsDetails" component={ProductsDetails} />
                     </>
                 ) : (
                     <>
