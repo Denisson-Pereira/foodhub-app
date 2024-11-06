@@ -5,6 +5,7 @@ import { abstractGetService } from "../../services/abstractGetService";
 import { IProduct } from "../../models/IProduct";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigate } from "../../hooks/useNavigate";
+import { pattersValues } from "../../helpers/pattersValues";
 
 export const PopularView = () => {
     const { popularItens, setPopularItens } = usePopularViewModel();
@@ -46,7 +47,7 @@ export const PopularView = () => {
                         />
                         <View style={styles.preco}>
                             <Text style={styles.priceOrange}>$</Text>
-                            <Text style={styles.priceBlack}>{item.price}</Text>
+                            <Text style={styles.priceBlack}>{pattersValues(item.price)}</Text>
                         </View>
                         <TouchableOpacity style={styles.favorite}>
                             <AntDesign name="heart" color='white' size={30} />

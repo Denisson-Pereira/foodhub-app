@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome, FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { CartView, FavoriteView, HomeView, MapView, ProfileView } from "../screens";
 
 const Tab = createBottomTabNavigator();
@@ -37,7 +37,7 @@ export const TabRoutes = () => {
                 name="cartView"
                 component={CartView}
                 options={{
-                    tabBarIcon: ({ color }) => <FontAwesome name='cart-arrow-down' color={color} size={30} />
+                    tabBarIcon: ({ color, size }) => <FontAwesome5 name='shopping-bag' color={color} size={size} />
                 }}
             />
 
