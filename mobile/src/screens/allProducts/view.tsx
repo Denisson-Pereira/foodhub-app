@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
     },
     priceOrange: {
         color: colors.orange,
-        fontSize: 10,
+        fontSize: 18,
+        fontWeight: '700'
     },
     priceBlack: {
         color: '#000000',
