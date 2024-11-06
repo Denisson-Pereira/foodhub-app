@@ -14,14 +14,14 @@ export const PopularView = () => {
             const response = await abstractGetService('products');
             setPopularItens(response);
         }
+        getDates();
+    }, []);
 
-        function filter() {
+    useEffect(() => {
+        if (popularItens) {
             const dates = popularItens.filter(item => parseFloat(item.evaluation) >= 4);
             setFilterDates(dates);
         }
-
-        getDates();
-        filter();
     }, [popularItens]);
 
     return (
