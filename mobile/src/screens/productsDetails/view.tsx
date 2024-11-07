@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
-import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { abstractGetByIdService } from "../../services/abstractGetByIdService";
 import { useProductsDetailsViewModel } from "./modelView";
 import { BgCleanContainer } from "../../containers";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { pattersValues } from "../../helpers/pattersValues";
+import { useFoodHubContext } from "../../context";
+import { IProduct } from "../../models/IProduct";
+import { useNavigate } from "../../hooks/useNavigate";
 
 export const ProductsDetails = () => {
     const { product, id, setProduct } = useProductsDetailsViewModel();
+    const { addCart } = useFoodHubContext();
+    const { navigate } = useNavigate();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -20,6 +25,18 @@ export const ProductsDetails = () => {
         };
         fetchProduct();
     }, [id]);
+
+    const addBag = (item: IProduct) => {
+        addCart(item)
+        navigate('home')
+        Alert.alert(
+          'Sucesso',
+          'Produto adicionado ao carrinho!',
+          [
+            {text: 'Continuar comprando'}
+          ]
+        )
+      }
 
     return (
         <BgCleanContainer>
@@ -40,7 +57,10 @@ export const ProductsDetails = () => {
                                 <Text style={styles.addonItem}>Mushroom +$2.50</Text>
                             </View>
                             <View style={styles.btn}>
-                                <TouchableOpacity style={styles.addToCartButton}>
+                                <TouchableOpacity 
+                                    style={styles.addToCartButton}
+                                    onPress={() => addBag(product)}
+                                >
                                     <View style={styles.btnView}>
                                         <FontAwesome5 name="shopping-bag" color="#FE724C" size={20} />
                                     </View>
