@@ -1,80 +1,58 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Fontisto, MaterialIcons } from "@expo/vector-icons";
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { MainContainer } from "../../containers/mainContainer";
 import { CustomButtonUp } from "../../custom";
 import { CartItem, useFoodHubContext } from "../../context";
 import { useNavigate } from "../../hooks/useNavigate";
 import { BgCleanContainer } from "../../containers";
+import { pattersValues } from "../../helpers/pattersValues";
+import { colors } from "../../constants/colors";
 
 export const CartView = () => {
     const { cart, removeCart, incrementQuantity, decrementQuantity } = useFoodHubContext();
     const { navigate } = useNavigate();
 
-    const renderStars = (rating: string) => {
-        const numericRating = Math.min(5, Math.max(0, Math.round(parseFloat(rating))));
-        const stars = [];
-        for (let i = 0; i < 5; i++) {
-            stars.push(
-                <Fontisto
-                    key={i}
-                    name="star"
-                    size={18}
-                    color={i < numericRating ? "#FFD700" : "#E0E0E0"}
-                />
-            );
-        }
-        return <View style={styles.starsContainer}>{stars}</View>;
-    };
-
     const renderItem = ({ item }: { item: CartItem }) => (
         <View style={styles.item}>
             <TouchableOpacity
                 style={styles.itemContent}
-                onPress={() => navigate('ProdutosDetalhes', { id: item.id })}
+                onPress={() => navigate('ProductsDetails', { id: item.id })}
             >
-                <Image
-                    source={{ uri: item.image }}
-                    style={styles.image}
-                />
-                <View style={styles.textContainer}>
-                    <Text style={styles.text}>{item.name}</Text>
-                    <Text style={styles.textValor}>{item.price}</Text>
-                    <View style={styles.containerStar}>
-                        {renderStars(item.evaluation)}
+                <Image source={{ uri: item.image }} style={styles.img} />
+                <View style={styles.container2}>
+                    <Text style={styles.itemTitle}>{item.name}</Text>
+                    <Text style={styles.itemEstablishment}>{item.establishment}</Text>
+                    <Text style={styles.itemPrice}>${pattersValues(item.price)}</Text>
+                </View>
+                <View style={styles.container3}>
+                    <TouchableOpacity onPress={() => removeCart(item.cartId)} style={styles.x}>
+                        <AntDesign name="close" color={colors.orange} size={20} />
+                    </TouchableOpacity>
+                    <View style={styles.btnPlus}>
+                        <TouchableOpacity onPress={() => decrementQuantity(item.cartId)}>
+                            <AntDesign name="minuscircleo" color={colors.orange} size={25} />
+                        </TouchableOpacity>
+                        <Text style={styles.quantityText}>{item.quantity}</Text>
+                        <TouchableOpacity onPress={() => incrementQuantity(item.cartId)}>
+                            <AntDesign name="pluscircle" color={colors.orange} size={25} />
+                        </TouchableOpacity>
                     </View>
-                    <Text style={styles.quantity}>Qtd: {item.quantity}</Text>
                 </View>
             </TouchableOpacity>
-            <View style={styles.buttonsContainer}>
-                <View style={styles.incrementDecrementContainer}>
-                    <TouchableOpacity style={styles.button} onPress={() => incrementQuantity(item.cartId)}>
-                        <Text style={styles.buttonText}>+</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => decrementQuantity(item.cartId)}>
-                        <Text style={styles.buttonText}>-</Text>
-                    </TouchableOpacity>
-                </View>
-                <TouchableOpacity style={styles.removeButton} onPress={() => removeCart(item.cartId)}>
-                    <Text style={styles.removeButtonText}>Remover</Text>
-                </TouchableOpacity>
-            </View>
         </View>
     );
 
     return (
-        <BgCleanContainer
-        >
+        <BgCleanContainer>
             <MainContainer>
-                <View style={styles.view}>
-                    <View style={styles.btn}>
-                        <CustomButtonUp IconComponent={MaterialIcons} icon="arrow-back-ios" url="homeView" />
-                    </View>
-                    <Text style={styles.text}>Favorite</Text>
+                <View style={styles.header}>
+                    <CustomButtonUp IconComponent={MaterialIcons} icon="arrow-back-ios" url="homeView" />
+                    <Text style={styles.headerTitle}>Cart</Text>
                 </View>
                 <FlatList
                     data={cart}
                     renderItem={renderItem}
-                    keyExtractor={item => item.cartId}
+                    keyExtractor={(item) => item.cartId}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.flatListContent}
                 />
@@ -84,177 +62,84 @@ export const CartView = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F5F5F5',
-        padding: 10,
-    },
     flatListContent: {
-        paddingBottom: 20,
+        paddingTop: 20,
+        paddingBottom: 50,
     },
-    view: {
+    header: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10,
-    },
-    btn: {
-        justifyContent: 'center',
-        // Propriedades de sombra para iOS
-        shadowColor: '#00000050',
+        padding: 15,
+        shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.2,
         shadowRadius: 4.65,
-        // Propriedade de sombra para Android
         elevation: 8,
     },
+    headerTitle: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        marginLeft: 15,
+        color: colors.black,
+    },
     item: {
-        backgroundColor: '#FFF',
-        padding: 15,
-        borderRadius: 10,
-        marginBottom: 15,
+        borderRadius: 15,
+        padding: 10,
+        marginVertical: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        elevation: 6,
     },
     itemContent: {
         flexDirection: 'row',
         alignItems: 'center',
-        flex: 1,
     },
-    image: {
+    img: {
         width: 80,
         height: 80,
-        resizeMode: 'contain',
         borderRadius: 10,
-        marginRight: 10,
+        marginRight: 15,
     },
-    textContainer: {
+    container2: {
         flex: 1,
+        justifyContent: 'center',
+        paddingVertical: 5,
     },
-    text: {
+    itemTitle: {
         fontSize: 16,
-        fontWeight: '600',
+        fontWeight: 'bold',
+        color: colors.black,
     },
-    textValor: {
-        fontSize: 16,
-        fontWeight: '700',
-        color: '#00BFFF',
-    },
-    quantity: {
-        marginTop: 5,
+    itemEstablishment: {
         fontSize: 14,
-        color: '#777',
+        color: colors.grey,
+        marginVertical: 3,
     },
-    buttonsContainer: {
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    incrementDecrementContainer: {
-        flexDirection: 'row',
-        marginBottom: 5,
-    },
-    button: {
-        backgroundColor: '#00A6EB',
-        padding: 8,
-        borderRadius: 5,
-        marginHorizontal: 5,
-    },
-    buttonText: {
-        color: '#FFF',
+    itemPrice: {
+        fontSize: 16,
         fontWeight: '600',
-        fontSize: 18,
+        color: colors.orange,
     },
-    removeButton: {
-        backgroundColor: '#FF6347',
-        padding: 8,
-        borderRadius: 5,
-        width: 80,
-        marginTop: 5,
-    },
-    removeButtonText: {
-        color: '#FFF',
-        fontWeight: '600',
-        textAlign: 'center',
-    },
-    starsContainer: {
-        flexDirection: 'row',
-        marginTop: 5,
-    },
-    containerStar: {
-        flexDirection: 'row',
-        gap: 5,
-    },
-    totalContainer: {
-        margin: 15,
-        padding: 15,
-        backgroundColor: '#FFF',
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
+    container3: {
         alignItems: 'center',
+        justifyContent: 'space-between',
     },
-    totalText: {
-        fontSize: 18,
-        fontWeight: '700',
-        color: '#00BFFF',
-    },
-    valorComDescontoText: {
-        fontSize: 18,
-        fontWeight: '800',
-        color: '#1dc525',
-    },
-    cupomContainer: {
-        marginTop: 20,
+    x: {
         alignItems: 'center',
-        paddingHorizontal: 10,
-    },
-    copiarButton: {
-        backgroundColor: '#00A6EB',
-        padding: 10,
-        borderRadius: 5,
+        justifyContent: 'center',
         marginBottom: 10,
     },
-    copiarButtonText: {
-        color: '#FFF',
-        fontWeight: '600',
-    },
-    cupomInputContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10
-    },
-    input: {
-        backgroundColor: '#FFF',
-        padding: 10,
-        borderRadius: 5,
-        flex: 1,
-        marginRight: 10,
-        borderWidth: 1,
-        borderColor: '#DDD',
-    },
-    aplicarButton: {
-        backgroundColor: '#1dc525',
-        padding: 10,
-        borderRadius: 5,
-    },
-    aplicarButtonText: {
-        color: '#FFF',
-        fontWeight: '600',
-    },
-    cupom: {
-        color: '#8f8e8e',
-        marginBottom: 5
-    },
-    containerFlex: {
+    btnPlus: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 10,
-    }
+        gap: 5,
+    },
+    quantityText: {
+        fontSize: 16,
+        fontWeight: '500',
+        marginHorizontal: 8,
+    },
 });
