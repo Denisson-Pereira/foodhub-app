@@ -91,14 +91,11 @@ const styles = StyleSheet.create({
     },
     card: {
         borderRadius: 10,
-        backgroundColor: '#fff',
-        // Propriedades de sombra para iOS
-        shadowColor: '#00000050',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4.65,
-        // Propriedade de sombra para Android
-        elevation: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        elevation: 6,
 
     },
     image: {

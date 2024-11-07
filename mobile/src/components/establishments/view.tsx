@@ -108,7 +108,11 @@ const styles = StyleSheet.create({
         width: 300,
         borderRadius: 10,
         overflow: 'hidden',
-        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        elevation: 6,
     },
     textContainer: {
         flexDirection: 'row',

@@ -40,13 +40,14 @@ export const CategoriesView = () => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
+        
     },
     view: {
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 5,
         marginVertical: 15,
-        gap: 5
+        gap: 5,
     },
     img: {
         width: 70,

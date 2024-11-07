@@ -92,8 +92,7 @@ export const AllEstablishmentView = () => {
 
 const styles = StyleSheet.create({
     scroll: {
-        paddingHorizontal: 5,
-        paddingTop: 20
+        paddingTop: 20,
     },
     shadowBox: {
         backgroundColor: '#fff',
@@ -101,12 +100,13 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         marginBottom: 20,
         // Propriedades de sombra para iOS
-        shadowColor: '#00000050',
+        shadowColor: '#0000002f',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 4.65,
         // Propriedade de sombra para Android
         elevation: 8,
+        
     },
     containerRow: {
         flexDirection: 'row',
