@@ -65,8 +65,12 @@ export const CartView = () => {
         <BgCleanContainer
         >
             <MainContainer>
-                <CustomButtonUp IconComponent={MaterialIcons} icon="arrow-back-ios" url="homeView" />
-                <Text>Favorite</Text>
+                <View style={styles.view}>
+                    <View style={styles.btn}>
+                        <CustomButtonUp IconComponent={MaterialIcons} icon="arrow-back-ios" url="homeView" />
+                    </View>
+                    <Text style={styles.text}>Favorite</Text>
+                </View>
                 <FlatList
                     data={cart}
                     renderItem={renderItem}
@@ -87,6 +91,21 @@ const styles = StyleSheet.create({
     },
     flatListContent: {
         paddingBottom: 20,
+    },
+    view: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+    btn: {
+        justifyContent: 'center',
+        // Propriedades de sombra para iOS
+        shadowColor: '#00000050',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4.65,
+        // Propriedade de sombra para Android
+        elevation: 8,
     },
     item: {
         backgroundColor: '#FFF',
