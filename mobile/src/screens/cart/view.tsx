@@ -1,4 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { MainContainer } from "../../containers/mainContainer";
 import { CustomButtonUp } from "../../custom";
@@ -7,10 +7,14 @@ import { useNavigate } from "../../hooks/useNavigate";
 import { BgCleanContainer } from "../../containers";
 import { pattersValues } from "../../helpers/pattersValues";
 import { colors } from "../../constants/colors";
+import { useCartViewModel } from "./viewModel";
+import { useEffect, useState } from "react";
 
 export const CartView = () => {
     const { cart, removeCart, incrementQuantity, decrementQuantity } = useFoodHubContext();
+    const { delivery, tax, setDelivery, setSubtotal, setTax, setTotal, subtotal, total } = useCartViewModel();
     const { navigate } = useNavigate();
+    const [inputPromoCode, setInputPromoCode] = useState("");
 
     const renderItem = ({ item }: { item: CartItem }) => (
         <View style={styles.item}>
@@ -42,6 +46,33 @@ export const CartView = () => {
         </View>
     );
 
+    const codePromo = (code: string) => {
+        // Aqui você pode definir o código promocional correto
+        const validPromoCode = "DESCONTO10";
+        return code === validPromoCode;
+    };
+
+    const applyPromoCode = () => {
+        if (codePromo(inputPromoCode)) {
+            // Aplicando desconto de 10% se o código for válido
+            const discount = subtotal * 0.1;
+            setTotal(subtotal - discount + tax + delivery);
+            alert("Código aplicado!")
+        } else {
+            alert("Código promocional inválido!");
+        }
+    };
+
+    useEffect(() => {
+        const subtotalValue = cart.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
+        setSubtotal(subtotalValue);
+    }, [cart]);
+
+    useEffect(() => {
+        const totalValue = subtotal + ((tax + delivery)*100);
+        setTotal(totalValue);
+    }, [subtotal, tax, delivery]);
+
     return (
         <BgCleanContainer>
             <MainContainer>
@@ -56,6 +87,54 @@ export const CartView = () => {
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.flatListContent}
                 />
+                <View style={styles.viewContainer}>
+                    <TextInput
+                        placeholder="Promo Code"
+                        style={styles.input}
+                        value={inputPromoCode}
+                        onChangeText={setInputPromoCode}
+                    />
+                    <TouchableOpacity style={styles.btnInput} onPress={applyPromoCode}>
+                        <Text style={styles.btntext}>Apply</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.containerValues}>
+                    <View style={styles.row}>
+                        <Text style={styles.titleValue}>Subtotal</Text>
+                        <View style={styles.row2}>
+                            <Text style={styles.money}>$</Text>
+                            <Text style={styles.moneyValue}>{pattersValues(subtotal.toString())}</Text>
+                            <Text style={styles.usd}>USD</Text>
+                        </View>
+                    </View>
+                    <View style={styles.separator} /> 
+                    <View style={styles.row}>
+                        <Text style={styles.titleValue}>Tax and Fees</Text>
+                        <View style={styles.row2}>
+                            <Text style={styles.money}>$</Text>
+                            <Text style={styles.moneyValue}>{(tax).toPrecision(3)}</Text>
+                            <Text style={styles.usd}>USD</Text>
+                        </View>
+                    </View>
+                    <View style={styles.separator} /> 
+                    <View style={styles.row}>
+                        <Text style={styles.titleValue}>Delivery</Text>
+                        <View style={styles.row2}>
+                            <Text style={styles.money}>$</Text>
+                            <Text style={styles.moneyValue}>{(delivery).toPrecision(3)}</Text>
+                            <Text style={styles.usd}>USD</Text>
+                        </View>
+                    </View>
+                    <View style={styles.separator} /> 
+                    <View style={styles.row}>
+                        <Text style={styles.titleValue}>Total</Text>
+                        <View style={styles.row2}>
+                            <Text style={styles.money}>$</Text>
+                            <Text style={styles.moneyValue}>{pattersValues(total.toString())}</Text>
+                            <Text style={styles.usd}>USD</Text>
+                        </View>
+                    </View>
+                </View>
             </MainContainer>
         </BgCleanContainer>
     );
@@ -141,5 +220,71 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
         marginHorizontal: 8,
+    },
+    viewContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderColor: '#EEEEEE',
+        borderWidth: 1,
+        borderRadius: 50,
+        paddingHorizontal: 10,
+    },
+    input: {
+        fontSize: 15,
+        height: 60,
+        flex: 1,
+        paddingLeft: 7
+    },
+    btnInput: {
+        backgroundColor: colors.orange,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+        width: 100,
+        borderRadius: 50,
+    },
+    btntext: {
+        color: colors.white,
+        fontSize: 17,
+        fontWeight: '600',
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    row2: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 1
+    },
+    separator: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#F1F2F3', 
+        marginVertical: 10, 
+    },
+    containerValues: {
+        padding: 10,
+        marginTop: 20,
+        gap: 5
+    },
+    titleValue: {
+        fontSize: 17,
+        fontWeight: '600'
+    },
+    money: {
+        fontSize: 20,
+        fontWeight: '700'
+    },
+    moneyValue: {
+        fontSize: 18,
+        fontWeight: '700'
+    },
+    usd: {
+        fontSize: 15,
+        fontWeight: '500',
+        color: colors.grey,
+        paddingLeft: 5
     },
 });
