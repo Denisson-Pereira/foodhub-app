@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     btntext: {
         color: colors.white,
         fontSize: 17,
-        fontWeight: '600',
+        fontWeight: '500',
     },
     row: {
         flexDirection: 'row',
@@ -280,19 +280,19 @@ const styles = StyleSheet.create({
     },
     titleValue: {
         fontSize: 17,
-        fontWeight: '600'
+        fontWeight: '500'
     },
     money: {
         fontSize: 20,
-        fontWeight: '700'
+        fontWeight: '600'
     },
     moneyValue: {
         fontSize: 18,
-        fontWeight: '700'
+        fontWeight: '600'
     },
     usd: {
         fontSize: 15,
-        fontWeight: '500',
+        fontWeight: '400',
         color: colors.grey,
         paddingLeft: 5
     },
