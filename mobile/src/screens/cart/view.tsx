@@ -152,7 +152,7 @@ export const CartView = () => {
 
 const styles = StyleSheet.create({
     flatListContent: {
-        height: 350
+        height: 350,
     },
     header: {
         flexDirection: 'row',
