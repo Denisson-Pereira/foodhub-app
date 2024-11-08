@@ -1,7 +1,7 @@
-import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { MainContainer } from "../../containers/mainContainer";
-import { CustomButtonUp } from "../../custom";
+import { CustomButton, CustomButtonUp } from "../../custom";
 import { CartItem, useFoodHubContext } from "../../context";
 import { useNavigate } from "../../hooks/useNavigate";
 import { BgCleanContainer } from "../../containers";
@@ -11,8 +11,8 @@ import { useCartViewModel } from "./viewModel";
 import { useEffect, useState } from "react";
 
 export const CartView = () => {
-    const { cart, removeCart, incrementQuantity, decrementQuantity } = useFoodHubContext();
-    const { delivery, tax, setDelivery, setSubtotal, setTax, setTotal, subtotal, total } = useCartViewModel();
+    const { cart, removeCart, incrementQuantity, decrementQuantity, quantidadeCart } = useFoodHubContext();
+    const { delivery, tax, setSubtotal, setTotal, subtotal, total } = useCartViewModel();
     const { navigate } = useNavigate();
     const [inputPromoCode, setInputPromoCode] = useState("");
 
@@ -47,19 +47,17 @@ export const CartView = () => {
     );
 
     const codePromo = (code: string) => {
-        // Aqui você pode definir o código promocional correto
-        const validPromoCode = "DESCONTO10";
+        const validPromoCode = "PROMO10";
         return code === validPromoCode;
     };
 
     const applyPromoCode = () => {
         if (codePromo(inputPromoCode)) {
-            // Aplicando desconto de 10% se o código for válido
             const discount = subtotal * 0.1;
             setTotal(subtotal - discount + tax + delivery);
-            alert("Código aplicado!")
+            alert("Code applied!")
         } else {
-            alert("Código promocional inválido!");
+            alert("Invalid promotional code!");
         }
     };
 
@@ -72,6 +70,10 @@ export const CartView = () => {
         const totalValue = subtotal + ((tax + delivery)*100);
         setTotal(totalValue);
     }, [subtotal, tax, delivery]);
+
+    const checkout = () => {
+        Alert.alert("Order placed successfully!")
+    }
 
     return (
         <BgCleanContainer>
@@ -127,7 +129,10 @@ export const CartView = () => {
                     </View>
                     <View style={styles.separator} /> 
                     <View style={styles.row}>
-                        <Text style={styles.titleValue}>Total</Text>
+                        <View style={styles.viewTotal}>
+                            <Text style={styles.titleValue}>Total</Text>
+                            <Text style={styles.textItems}>({quantidadeCart} items)</Text>
+                        </View>
                         <View style={styles.row2}>
                             <Text style={styles.money}>$</Text>
                             <Text style={styles.moneyValue}>{pattersValues(total.toString())}</Text>
@@ -135,6 +140,11 @@ export const CartView = () => {
                         </View>
                     </View>
                 </View>
+                <CustomButton 
+                    title="CHECKOUT"
+                    onPress={checkout}
+                    disabled={false}
+                />
             </MainContainer>
         </BgCleanContainer>
     );
@@ -142,8 +152,7 @@ export const CartView = () => {
 
 const styles = StyleSheet.create({
     flatListContent: {
-        paddingTop: 20,
-        paddingBottom: 50,
+        height: 350
     },
     header: {
         flexDirection: 'row',
@@ -164,7 +173,7 @@ const styles = StyleSheet.create({
     item: {
         borderRadius: 15,
         padding: 10,
-        marginVertical: 10,
+        marginVertical: 5,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
@@ -266,7 +275,7 @@ const styles = StyleSheet.create({
     },
     containerValues: {
         padding: 10,
-        marginTop: 20,
+        marginVertical: 20,
         gap: 5
     },
     titleValue: {
@@ -287,4 +296,14 @@ const styles = StyleSheet.create({
         color: colors.grey,
         paddingLeft: 5
     },
+    viewTotal: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 5
+    },
+    textItems: {
+        fontSize: 13,
+        color: colors.grey
+    }
 });

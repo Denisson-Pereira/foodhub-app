@@ -7,6 +7,5 @@ export const useCartViewModel = ():ICartModelo => {
     const [delivery, setDelivery] = useState<number>(1);
     const [total, setTotal] = useState<number>(0);
 
-
     return {subtotal, tax, delivery, total, setSubtotal, setTax, setDelivery, setTotal };
 }
