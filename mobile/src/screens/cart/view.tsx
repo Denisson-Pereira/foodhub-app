@@ -88,6 +88,8 @@ export const CartView = () => {
                     keyExtractor={(item) => item.cartId}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.flatListContent}
+                    style={styles.flatList}
+                    ListEmptyComponent={<Text style={styles.emptyText}>Your cart is empty</Text>}
                 />
                 <View style={styles.viewContainer}>
                     <TextInput
@@ -184,6 +186,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    flatList: {
+        flexGrow: 0,
+    },
     img: {
         width: 80,
         height: 80,
@@ -244,6 +249,12 @@ const styles = StyleSheet.create({
         height: 60,
         flex: 1,
         paddingLeft: 7
+    },
+    emptyText:{
+        textAlign: 'center',
+        marginTop: 20,
+        fontSize: 16,
+        color: colors.grey,
     },
     btnInput: {
         backgroundColor: colors.orange,
