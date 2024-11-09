@@ -36,55 +36,57 @@ export const EstablishmentView = () => {
                 contentContainerStyle={styles.scrollContainer}
             >
                 {establishment.map((item) => (
-                    <TouchableOpacity key={item.id} style={styles.card}>
-                        <Image
-                            source={{ uri: item.cover }}
-                            style={styles.image}
-                        />
-                        <View style={styles.info}>
-                            <View style={styles.viewName}>
-                                <Text style={styles.name}>{item.name}</Text>
-                                <Ionicons
-                                    name="checkmark-circle-sharp"
-                                    color="#029094"
-                                    size={20}
-                                />
-                            </View>
-                            <View style={styles.viewDelivey}>
-                                <View style={styles.viewDeliveryContainer}>
-                                    <Image
-                                        source={require('../../assets/delivery.png')}
-                                        style={styles.icons}
+                    <View style={styles.cardContainer}>
+                        <TouchableOpacity key={item.id} style={styles.card}>
+                            <Image
+                                source={{ uri: item.cover }}
+                                style={styles.image}
+                            />
+                            <View style={styles.info}>
+                                <View style={styles.viewName}>
+                                    <Text style={styles.name}>{item.name}</Text>
+                                    <Ionicons
+                                        name="checkmark-circle-sharp"
+                                        color="#029094"
+                                        size={20}
                                     />
-                                    <Text style={styles.textDelivery}>Free delivery</Text>
                                 </View>
-                                <View style={styles.viewDeliveryContainer}>
-                                    <Image
-                                        source={require('../../assets/time.png')}
-                                        style={styles.icons}
-                                    />
-                                    <Text style={styles.textDelivery}>{item.time}</Text>
+                                <View style={styles.viewDelivey}>
+                                    <View style={styles.viewDeliveryContainer}>
+                                        <Image
+                                            source={require('../../assets/delivery.png')}
+                                            style={styles.icons}
+                                        />
+                                        <Text style={styles.textDelivery}>Free delivery</Text>
+                                    </View>
+                                    <View style={styles.viewDeliveryContainer}>
+                                        <Image
+                                            source={require('../../assets/time.png')}
+                                            style={styles.icons}
+                                        />
+                                        <Text style={styles.textDelivery}>{item.time} mins</Text>
+                                    </View>
                                 </View>
+                                    <View style={styles.tagContainer}>
+                                        <View
+                                            style={styles.viewTag}
+                                        >
+                                            <Text style={styles.textTag}>{upperCase(item.tag_1)}</Text>
+                                        </View>
+                                        <View
+                                            style={styles.viewTag}
+                                        >
+                                            <Text style={styles.textTag}>{upperCase(item.tag_2)}</Text>
+                                        </View>
+                                        <View
+                                            style={styles.viewTag}
+                                        >
+                                            <Text style={styles.textTag}>{upperCase(item.tag_3)}</Text>
+                                        </View>
+                                    </View>
                             </View>
-                                <View style={styles.tagContainer}>
-                                    <View
-                                        style={styles.viewTag}
-                                    >
-                                        <Text>{upperCase(item.tag_1)}</Text>
-                                    </View>
-                                    <View
-                                        style={styles.viewTag}
-                                    >
-                                        <Text>{upperCase(item.tag_2)}</Text>
-                                    </View>
-                                    <View
-                                        style={styles.viewTag}
-                                    >
-                                        <Text>{upperCase(item.tag_3)}</Text>
-                                    </View>
-                                </View>
-                        </View>
-                    </TouchableOpacity>
+                        </TouchableOpacity>
+                    </View>
                 ))}
             </ScrollView>
         </View>
@@ -102,22 +104,29 @@ const styles = StyleSheet.create({
     },
     scrollContainer: {
         paddingHorizontal: 5,
-        gap: 10
+        gap: 10,
     },
     card: {
-        width: 300,
         borderRadius: 10,
         overflow: 'hidden',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation: 6,
+        backgroundColor: 'white',
     },
     textContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
+    },
+    cardContainer: {
+        width: 300,
+        borderRadius: 10,
+        backgroundColor: 'white',
+        shadowColor: '#00000037',
+        shadowOffset: { width: 10, height: 5 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 10,
+        // Adiciona um padding para afastar o conteúdo da borda
+        marginVertical: 20,
     },
     textOrange: {
         color: '#FE724C'
@@ -130,7 +139,7 @@ const styles = StyleSheet.create({
     },
     viewDelivey: {
         flexDirection: 'row',
-        gap: 20
+        gap: 40
     },
     textDelivery: {
         color: '#7E8392'
@@ -176,5 +185,8 @@ const styles = StyleSheet.create({
     tagContainer: {
         flexDirection: 'row',
         gap: 10,
+    },
+    textTag: {
+        color: '#8A8E9B'
     },
 });
