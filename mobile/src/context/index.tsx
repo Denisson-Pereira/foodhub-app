@@ -18,6 +18,8 @@ type FoodHubProps = {
     incrementQuantity: (cartId: string) => void;
     decrementQuantity: (cartId: string) => void;
     quantidadeCart: string;
+    favorites: IProduct[];
+    toggleFavorite: (item: IProduct) => void;
 }
 
 type Props = {
@@ -30,7 +32,9 @@ export const FoodhubProvider: React.FC<Props> = ({children}: Props) => {
     const [user, setUser] = useState<IUser>({} as IUser);
 
     const [cart, setCart] = useState<CartItem[]>([]);
-    const [quantidadeCart, setQuantidadeCart] = useState<string>('')
+    const [quantidadeCart, setQuantidadeCart] = useState<string>('');
+
+    const [favorites, setFavorites] = useState<IProduct[]>([]);
 
     useEffect(() => {
         async function logar() {
@@ -96,7 +100,28 @@ export const FoodhubProvider: React.FC<Props> = ({children}: Props) => {
         updateCartAndQuantity(updatedCart);
     };
 
-    const values = { user, setUser, cart, addCart, quantidadeCart, removeCart, incrementQuantity, decrementQuantity }
+    useEffect(() => {
+        const loadFavorites = async () => {
+          const storedFavorites = await AsyncStorage.getItem('@favorites');
+          if (storedFavorites) {
+            setFavorites(JSON.parse(storedFavorites));
+          }
+        };
+        loadFavorites();
+      }, []);
+    
+      const toggleFavorite = async (item: IProduct) => {
+        let updatedFavorites;
+        if (favorites.find(fav => fav.id === item.id)) {
+          updatedFavorites = favorites.filter(fav => fav.id !== item.id);
+        } else {
+          updatedFavorites = [...favorites, item];
+        }
+        setFavorites(updatedFavorites);
+        await AsyncStorage.setItem('@favorites', JSON.stringify(updatedFavorites));
+      };
+
+    const values = { user, setUser, cart, addCart, quantidadeCart, removeCart, incrementQuantity, decrementQuantity, favorites, toggleFavorite }
 
     return (
         <Context.Provider value={values}>

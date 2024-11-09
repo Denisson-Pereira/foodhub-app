@@ -6,11 +6,14 @@ import { IProduct } from "../../models/IProduct";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigate } from "../../hooks/useNavigate";
 import { pattersValues } from "../../helpers/pattersValues";
+import { useFoodHubContext } from "../../context";
+import { colors } from "../../constants/colors";
 
 export const PopularView = () => {
     const { popularItens, setPopularItens } = usePopularViewModel();
     const [filterDates, setFilterDates] = useState<IProduct[]>([]);
     const { navigate } = useNavigate();
+    const { favorites, toggleFavorite } = useFoodHubContext();
 
     useEffect(() => {
         async function getDates() {
@@ -45,9 +48,8 @@ export const PopularView = () => {
                 contentContainerStyle={styles.scrollContainer}
             >
                 {filterDates.map((item) => (
-                    <View style={styles.cardContainer}>
+                    <View key={item.id} style={styles.cardContainer}>
                         <TouchableOpacity
-                            key={item.id}
                             style={styles.card}
                             onPress={() => navigate('ProductsDetails', { id: item.id })}
                         >
@@ -59,8 +61,8 @@ export const PopularView = () => {
                                 <Text style={styles.priceOrange}>$</Text>
                                 <Text style={styles.priceBlack}>{pattersValues(item.price)}</Text>
                             </View>
-                            <TouchableOpacity style={styles.favorite}>
-                                <AntDesign name="heart" color='white' size={30} />
+                            <TouchableOpacity style={styles.favorite} onPress={() => toggleFavorite(item)}>
+                                <AntDesign name={ favorites.some(fav => fav.id === item.id) ? 'heart' : 'hearto' } color={ favorites.some(fav => fav.id === item.id) ? colors.orange : 'white' } size={30} />
                             </TouchableOpacity>
                             <View style={styles.star}>
                                 <MaterialCommunityIcons name="star" color='#FFC529' />
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         top: 10,
         right: 10,
-        backgroundColor: '#ffffff5e',
+        backgroundColor: '#ffffffc8',
         padding: 5,
         borderRadius: 50,
     },

@@ -36,8 +36,8 @@ export const EstablishmentView = () => {
                 contentContainerStyle={styles.scrollContainer}
             >
                 {establishment.map((item) => (
-                    <View style={styles.cardContainer}>
-                        <TouchableOpacity key={item.id} style={styles.card}>
+                    <View key={item.id}  style={styles.cardContainer}>
+                        <TouchableOpacity style={styles.card}>
                             <Image
                                 source={{ uri: item.cover }}
                                 style={styles.image}
