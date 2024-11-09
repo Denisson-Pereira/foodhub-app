@@ -5,9 +5,12 @@ import { useEstablishmentViewModel } from "./viewModel";
 import { AntDesign, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { upperCase } from "../../helpers/upperCase";
 import { useNavigate } from "../../hooks/useNavigate";
+import { useFoodHubContext } from "../../context";
+import { colors } from "../../constants/colors";
 
 export const EstablishmentView = () => {
     const { establishment, setEstablishment } = useEstablishmentViewModel();
+    const { toggleFavoritesEstablishment, favoritesEstablishment} = useFoodHubContext();
     const { navigate } = useNavigate();
 
     useEffect(() => {
@@ -47,6 +50,9 @@ export const EstablishmentView = () => {
                                 <MaterialCommunityIcons name="star" color='#FFC529' />
                                 <Text style={styles.plus}>(25+)</Text>
                             </View>
+                            <TouchableOpacity onPress={() => toggleFavoritesEstablishment(item)} style={styles.favorite}>
+                                        <AntDesign name={favoritesEstablishment.some(fav => fav.id === item.id) ? 'heart' : 'hearto'} color={favoritesEstablishment.some(fav => fav.id === item.id) ? colors.orange : 'white'} size={30} />
+                                    </TouchableOpacity>
                             <View style={styles.info}>
                                 <View style={styles.viewName}>
                                     <Text style={styles.name}>{item.name}</Text>
@@ -132,6 +138,17 @@ const styles = StyleSheet.create({
         elevation: 10,
         // Adiciona um padding para afastar o conteúdo da borda
         marginVertical: 10,
+    },
+    favorite: {
+        position: 'absolute',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 10,
+        right: 10,
+        backgroundColor: '#ffffffc8',
+        padding: 5,
+        borderRadius: 50,
     },
     textOrange: {
         color: '#FE724C'

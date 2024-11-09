@@ -1,5 +1,5 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { AntDesign, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { BgCleanContainer, MainContainer } from "../../containers";
 import { CustomButtonUp } from "../../custom";
 import { colors } from "../../constants/colors";
@@ -9,7 +9,7 @@ import { pattersValues } from "../../helpers/pattersValues";
 import { useState } from "react";
 
 export const FavoriteView = () => {
-    const { favorites, toggleFavorite } = useFoodHubContext();
+    const { favorites, toggleFavorite, favoritesEstablishment, toggleFavoritesEstablishment } = useFoodHubContext();
     const { navigate } = useNavigate();
 
     const [selected, setSelected] = useState<'food' | 'establishment'>('food');
@@ -79,7 +79,48 @@ export const FavoriteView = () => {
                         ))}
                     </ScrollView>
                 ) : (
-                    <Text>Restrents</Text>
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                        contentContainerStyle={styles.scrollContainer}
+                    >
+                        {favoritesEstablishment.map((item) => (
+                            <View style={styles.cardContainer} key={item.id}>
+                                <TouchableOpacity
+                                    style={styles.card}
+                                    onPress={() => navigate('ProductsDetails', { id: item.id })}
+                                >
+                                    <Image
+                                        source={{ uri: item.cover }}
+                                        style={styles.image}
+                                    />
+                                    <View style={styles.preco}>
+                                        <Image source={{ uri: item.image }} style={styles.imgResturents} />
+                                    </View>
+                                    <TouchableOpacity onPress={() => toggleFavoritesEstablishment(item)} style={styles.favorite}>
+                                        <AntDesign name={favorites.some(fav => fav.id === item.id) ? 'heart' : 'hearto'} color={favorites.some(fav => fav.id === item.id) ? colors.orange : 'white'} size={30} />
+                                    </TouchableOpacity>
+                                    <View style={styles.star}>
+                                        <Text style={styles.priceBlack}>{item.evaluation}</Text>
+                                        <MaterialCommunityIcons name="star" color='#FFC529' />
+                                        <Text style={styles.plus}>(25+)</Text>
+                                    </View>
+                                    <View style={styles.info}>
+                                        <View style={styles.viewName}>
+                                            <Text style={styles.nameEstablishment}>{item.name}</Text>
+                                            <Ionicons
+                                                name="checkmark-circle-sharp"
+                                                color="#029094"
+                                                size={20}
+                                            />
+                                        </View>
+                                        <View style={styles.viewDelivey}>
+                                            <Text style={styles.textDeliveryResturents}>{item.description}</Text>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        ))}
+                    </ScrollView>
                 )}
             </MainContainer>
         </BgCleanContainer>
@@ -182,8 +223,17 @@ const styles = StyleSheet.create({
     textDelivery: {
         color: '#7E8392',
     },
+    textDeliveryResturents: {
+        color: '#7E8392',
+        textAlign: 'justify',
+    },
     name: {
         fontSize: 20,
+        fontWeight: 'bold',
+        paddingVertical: 5
+    },
+    nameEstablishment: {
+        fontSize: 25,
         fontWeight: 'bold',
         paddingVertical: 5
     },
@@ -196,13 +246,14 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         gap: 5,
+        paddingTop: 10
     },
     container: {
         flexDirection: 'row',
         borderRadius: 40,
         overflow: 'hidden',
-        backgroundColor: '#ffffff', 
-        padding: 4, 
+        backgroundColor: '#ffffff',
+        padding: 4,
         borderWidth: 1,
         borderColor: '#F2EAEA',
     },
@@ -213,14 +264,18 @@ const styles = StyleSheet.create({
         borderRadius: 40,
     },
     selectedButton: {
-        backgroundColor: colors.orange, 
+        backgroundColor: colors.orange,
     },
     buttonText: {
-        color: colors.orange, 
+        color: colors.orange,
         fontSize: 17,
         fontWeight: '500'
     },
     selectedText: {
         color: '#FFFFFF',
     },
+    imgResturents: {
+        width: 40,
+        height: 40
+    }
 });
