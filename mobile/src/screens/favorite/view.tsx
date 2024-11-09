@@ -6,55 +6,81 @@ import { colors } from "../../constants/colors";
 import { useFoodHubContext } from "../../context";
 import { useNavigate } from "../../hooks/useNavigate";
 import { pattersValues } from "../../helpers/pattersValues";
+import { useState } from "react";
 
 export const FavoriteView = () => {
     const { favorites, toggleFavorite } = useFoodHubContext();
     const { navigate } = useNavigate();
+
+    const [selected, setSelected] = useState<'food' | 'establishment'>('food');
     return (
         <BgCleanContainer>
             <MainContainer>
                 <View style={styles.header}>
                     <CustomButtonUp IconComponent={MaterialIcons} icon="arrow-back-ios" url="homeView" />
-                    <Text style={styles.headerTitle}>Cart</Text>
+                    <Text style={styles.headerTitle}>Favorites</Text>
                 </View>
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={styles.scrollContainer}
-                >
-                    {favorites.map((item) => (
-                        <View style={styles.cardContainer} key={item.id}>
-                            <TouchableOpacity
-                                style={styles.card}
-                                onPress={() => navigate('ProductsDetails', { id: item.id })}
-                            >
-                                <Image
-                                    source={{ uri: item.image }}
-                                    style={styles.image}
-                                />
-                                <View style={styles.preco}>
-                                    <Text style={styles.priceOrange}>$</Text>
-                                    <Text style={styles.priceBlack}>{pattersValues(item.price)}</Text>
-                                </View>
-                                <TouchableOpacity onPress={() => toggleFavorite(item)} style={styles.favorite}>
-                                    <AntDesign name={favorites.some(fav => fav.id === item.id) ? 'heart' : 'hearto'} color={favorites.some(fav => fav.id === item.id) ? colors.orange : 'white'} size={30} />
+                <View style={styles.container}>
+                    <TouchableOpacity
+                        style={[styles.button, selected === 'food' && styles.selectedButton]}
+                        onPress={() => setSelected('food')}
+                    >
+                        <Text style={[styles.buttonText, selected === 'food' && styles.selectedText]}>
+                            Food Items
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={[styles.button, selected === 'establishment' && styles.selectedButton]}
+                        onPress={() => setSelected('establishment')}
+                    >
+                        <Text style={[styles.buttonText, selected === 'establishment' && styles.selectedText]}>
+                            Resturents
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                {selected === 'food' ? (
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                        contentContainerStyle={styles.scrollContainer}
+                    >
+                        {favorites.map((item) => (
+                            <View style={styles.cardContainer} key={item.id}>
+                                <TouchableOpacity
+                                    style={styles.card}
+                                    onPress={() => navigate('ProductsDetails', { id: item.id })}
+                                >
+                                    <Image
+                                        source={{ uri: item.image }}
+                                        style={styles.image}
+                                    />
+                                    <View style={styles.preco}>
+                                        <Text style={styles.priceOrange}>$</Text>
+                                        <Text style={styles.priceBlack}>{pattersValues(item.price)}</Text>
+                                    </View>
+                                    <TouchableOpacity onPress={() => toggleFavorite(item)} style={styles.favorite}>
+                                        <AntDesign name={favorites.some(fav => fav.id === item.id) ? 'heart' : 'hearto'} color={favorites.some(fav => fav.id === item.id) ? colors.orange : 'white'} size={30} />
+                                    </TouchableOpacity>
+                                    <View style={styles.star}>
+                                        <Text style={styles.priceBlack}>{item.evaluation}</Text>
+                                        <MaterialCommunityIcons name="star" color='#FFC529' />
+                                        <Text style={styles.plus}>(25+)</Text>
+                                    </View>
+                                    <View style={styles.info}>
+                                        <View style={styles.viewName}>
+                                            <Text style={styles.name}>{item.name}</Text>
+                                        </View>
+                                        <View style={styles.viewDelivey}>
+                                            <Text style={styles.textDelivery}>{item.establishment}</Text>
+                                        </View>
+                                    </View>
                                 </TouchableOpacity>
-                                <View style={styles.star}>
-                                    <Text style={styles.priceBlack}>{item.evaluation}</Text>
-                                    <MaterialCommunityIcons name="star" color='#FFC529' />
-                                    <Text style={styles.plus}>(25+)</Text>
-                                </View>
-                                <View style={styles.info}>
-                                    <View style={styles.viewName}>
-                                        <Text style={styles.name}>{item.name}</Text>
-                                    </View>
-                                    <View style={styles.viewDelivey}>
-                                        <Text style={styles.textDelivery}>{item.establishment}</Text>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    ))}
-                </ScrollView>
+                            </View>
+                        ))}
+                    </ScrollView>
+                ) : (
+                    <Text>Restrents</Text>
+                )}
             </MainContainer>
         </BgCleanContainer>
     );
@@ -129,7 +155,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         top: 10,
         right: 10,
-        backgroundColor: '#ffffff5e',
+        backgroundColor: '#ffffffc8',
         padding: 5,
         borderRadius: 50,
     },
@@ -170,5 +196,31 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         gap: 5,
+    },
+    container: {
+        flexDirection: 'row',
+        borderRadius: 40,
+        overflow: 'hidden',
+        backgroundColor: '#ffffff', 
+        padding: 4, 
+        borderWidth: 1,
+        borderColor: '#F2EAEA',
+    },
+    button: {
+        flex: 1,
+        paddingVertical: 15,
+        alignItems: 'center',
+        borderRadius: 40,
+    },
+    selectedButton: {
+        backgroundColor: colors.orange, 
+    },
+    buttonText: {
+        color: colors.orange, 
+        fontSize: 17,
+        fontWeight: '500'
+    },
+    selectedText: {
+        color: '#FFFFFF',
     },
 });

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { abstractGetService } from "../../services/abstractGetService";
 import { useEstablishmentViewModel } from "./viewModel";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { upperCase } from "../../helpers/upperCase";
 import { useNavigate } from "../../hooks/useNavigate";
 
@@ -22,7 +22,7 @@ export const EstablishmentView = () => {
         <View style={styles.container}>
             <View style={styles.textContainer}>
                 <Text style={styles.title}>Featured Restaurants</Text>
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.textContainer}
                     onPress={() => navigate('AllEstablishments')}
                 >
@@ -36,12 +36,17 @@ export const EstablishmentView = () => {
                 contentContainerStyle={styles.scrollContainer}
             >
                 {establishment.map((item) => (
-                    <View key={item.id}  style={styles.cardContainer}>
+                    <View key={item.id} style={styles.cardContainer}>
                         <TouchableOpacity style={styles.card}>
                             <Image
                                 source={{ uri: item.cover }}
                                 style={styles.image}
                             />
+                            <View style={styles.star}>
+                                <Text style={styles.priceBlack}>{item.evaluation}</Text>
+                                <MaterialCommunityIcons name="star" color='#FFC529' />
+                                <Text style={styles.plus}>(25+)</Text>
+                            </View>
                             <View style={styles.info}>
                                 <View style={styles.viewName}>
                                     <Text style={styles.name}>{item.name}</Text>
@@ -67,23 +72,23 @@ export const EstablishmentView = () => {
                                         <Text style={styles.textDelivery}>{item.time} mins</Text>
                                     </View>
                                 </View>
-                                    <View style={styles.tagContainer}>
-                                        <View
-                                            style={styles.viewTag}
-                                        >
-                                            <Text style={styles.textTag}>{upperCase(item.tag_1)}</Text>
-                                        </View>
-                                        <View
-                                            style={styles.viewTag}
-                                        >
-                                            <Text style={styles.textTag}>{upperCase(item.tag_2)}</Text>
-                                        </View>
-                                        <View
-                                            style={styles.viewTag}
-                                        >
-                                            <Text style={styles.textTag}>{upperCase(item.tag_3)}</Text>
-                                        </View>
+                                <View style={styles.tagContainer}>
+                                    <View
+                                        style={styles.viewTag}
+                                    >
+                                        <Text style={styles.textTag}>{upperCase(item.tag_1)}</Text>
                                     </View>
+                                    <View
+                                        style={styles.viewTag}
+                                    >
+                                        <Text style={styles.textTag}>{upperCase(item.tag_2)}</Text>
+                                    </View>
+                                    <View
+                                        style={styles.viewTag}
+                                    >
+                                        <Text style={styles.textTag}>{upperCase(item.tag_3)}</Text>
+                                    </View>
+                                </View>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -188,5 +193,30 @@ const styles = StyleSheet.create({
     },
     textTag: {
         color: '#8A8E9B'
+    },
+    evaluation: {
+        position: 'absolute',
+        top: 10
+    },
+    star: {
+        position: 'absolute',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 10,
+        left: 10,
+        backgroundColor: '#ffffff',
+        padding: 7,
+        borderRadius: 50,
+        gap: 3
+    },
+    plus: {
+        fontSize: 10,
+        color: '#9796A1'
+    },
+    priceBlack: {
+        color: '#000000',
+        fontWeight: '700',
+        fontSize: 18,
     },
 });

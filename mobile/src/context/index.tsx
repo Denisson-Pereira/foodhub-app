@@ -3,6 +3,7 @@ import { IUser } from "../models/IUser";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FOODHUB_USER } from "../services/loginService";
 import { IProduct } from "../models/IProduct";
+import { IEstablishment } from "../models/IEstablishment";
 
 export interface CartItem extends IProduct {
     cartId: string;
@@ -20,6 +21,8 @@ type FoodHubProps = {
     quantidadeCart: string;
     favorites: IProduct[];
     toggleFavorite: (item: IProduct) => void;
+    favoritesEstablishment: IEstablishment[];
+    toggleFavoritesEstablishment: (item: IEstablishment) => void
 }
 
 type Props = {
@@ -28,13 +31,14 @@ type Props = {
 
 const Context = createContext<FoodHubProps>({} as FoodHubProps);
 
-export const FoodhubProvider: React.FC<Props> = ({children}: Props) => {
+export const FoodhubProvider: React.FC<Props> = ({ children }: Props) => {
     const [user, setUser] = useState<IUser>({} as IUser);
 
     const [cart, setCart] = useState<CartItem[]>([]);
     const [quantidadeCart, setQuantidadeCart] = useState<string>('');
 
     const [favorites, setFavorites] = useState<IProduct[]>([]);
+    const [favoritesEstablishment, setFavoritesEstablishment] = useState<IEstablishment[]>([]);
 
     useEffect(() => {
         async function logar() {
@@ -70,7 +74,7 @@ export const FoodhubProvider: React.FC<Props> = ({children}: Props) => {
     const addCart = async (item: IProduct) => {
         const existingItem = cart.find(cartItem => cartItem.id === item.id);
         if (existingItem) {
-            const updatedCart = cart.map(cartItem => 
+            const updatedCart = cart.map(cartItem =>
                 cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
             );
             updateCartAndQuantity(updatedCart);
@@ -87,14 +91,14 @@ export const FoodhubProvider: React.FC<Props> = ({children}: Props) => {
     };
 
     const incrementQuantity = async (cartId: string) => {
-        const updatedCart = cart.map(cartItem => 
+        const updatedCart = cart.map(cartItem =>
             cartItem.cartId === cartId ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
         );
         updateCartAndQuantity(updatedCart);
     };
 
     const decrementQuantity = async (cartId: string) => {
-        const updatedCart = cart.map(cartItem => 
+        const updatedCart = cart.map(cartItem =>
             cartItem.cartId === cartId && cartItem.quantity > 1 ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
         );
         updateCartAndQuantity(updatedCart);
@@ -102,26 +106,47 @@ export const FoodhubProvider: React.FC<Props> = ({children}: Props) => {
 
     useEffect(() => {
         const loadFavorites = async () => {
-          const storedFavorites = await AsyncStorage.getItem('@favorites');
-          if (storedFavorites) {
-            setFavorites(JSON.parse(storedFavorites));
-          }
+            const storedFavorites = await AsyncStorage.getItem('@favorites');
+            if (storedFavorites) {
+                setFavorites(JSON.parse(storedFavorites));
+            }
         };
         loadFavorites();
-      }, []);
-    
-      const toggleFavorite = async (item: IProduct) => {
-        let updatedFavorites;
-        if (favorites.find(fav => fav.id === item.id)) {
-          updatedFavorites = favorites.filter(fav => fav.id !== item.id);
-        } else {
-          updatedFavorites = [...favorites, item];
-        }
-        setFavorites(updatedFavorites);
-        await AsyncStorage.setItem('@favorites', JSON.stringify(updatedFavorites));
-      };
+    }, []);
 
-    const values = { user, setUser, cart, addCart, quantidadeCart, removeCart, incrementQuantity, decrementQuantity, favorites, toggleFavorite }
+    const toggleFavorite = async (item: IProduct) => {
+        let updatedFavoritesEstablishment;
+        if (favorites.find(fav => fav.id === item.id)) {
+            updatedFavoritesEstablishment = favorites.filter(fav => fav.id !== item.id);
+        } else {
+            updatedFavoritesEstablishment = [...favorites, item];
+        }
+        setFavorites(updatedFavoritesEstablishment);
+        await AsyncStorage.setItem('@favorites', JSON.stringify(updatedFavoritesEstablishment));
+    };
+
+    useEffect(() => {
+        const loadFavoritesEstablishment = async () => {
+            const storedFavorites = await AsyncStorage.getItem('@favoritesEstablishment');
+            if (storedFavorites) {
+                setFavoritesEstablishment(JSON.parse(storedFavorites));
+            }
+        };
+        loadFavoritesEstablishment();
+    }, []);
+
+    const toggleFavoritesEstablishment = async (item: IEstablishment) => {
+        let updatedFavoritesEstablishment;
+        if (favoritesEstablishment.find(fav => fav.id === item.id)) {
+            updatedFavoritesEstablishment = favoritesEstablishment.filter(fav => fav.id !== item.id);
+        } else {
+            updatedFavoritesEstablishment = [...favoritesEstablishment, item];
+        }
+        setFavoritesEstablishment(updatedFavoritesEstablishment);
+        await AsyncStorage.setItem('@favoritesEstablishment', JSON.stringify(updatedFavoritesEstablishment));
+    };
+
+    const values = { user, setUser, cart, addCart, quantidadeCart, removeCart, incrementQuantity, decrementQuantity, favorites, toggleFavorite, favoritesEstablishment, toggleFavoritesEstablishment }
 
     return (
         <Context.Provider value={values}>
