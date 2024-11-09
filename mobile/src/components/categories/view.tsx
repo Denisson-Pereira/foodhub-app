@@ -30,7 +30,7 @@ export const CategoriesView = () => {
                         style={styles.img} 
                         source={{ uri: item.image }}
                     />
-                    <Text>{item.name}</Text>
+                    <Text style={styles.txt}>{item.name}</Text>
                 </View>
             ))}
         </ScrollView>
@@ -46,12 +46,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 5,
-        marginVertical: 15,
+        paddingVertical: 10,
         gap: 5,
+        backgroundColor: 'white',
+        shadowColor: '#00000037',
+        shadowOffset: { width: 10, height: 5 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 10,
+        // Adiciona um padding para afastar o conteúdo da borda
+        marginVertical: 20,
+        borderRadius: 50
     },
     img: {
         width: 70,
         height: 70
     },
-
+    txt: {
+        color: '#67666D',
+        fontSize: 11
+    }
 });
