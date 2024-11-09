@@ -21,6 +21,14 @@ const styles = StyleSheet.create({
     view: {
         flexDirection: 'row',
         alignItems: 'center',
+        backgroundColor: 'white',
+        shadowColor: '#00000037',
+        shadowOffset: { width: 10, height: 5 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 10,
+        marginVertical: 10,
+        borderRadius: 10
     },
     container: {
         backgroundColor: '#ffffff',

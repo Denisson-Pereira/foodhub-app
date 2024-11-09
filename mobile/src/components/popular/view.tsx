@@ -22,7 +22,7 @@ export const PopularView = () => {
 
     useEffect(() => {
         if (popularItens) {
-            const dates = popularItens.filter(item => parseFloat(item.evaluation) >= 4);
+            const dates = popularItens.filter(item => parseFloat(item.evaluation) >= 3);
             setFilterDates(dates);
         }
     }, [popularItens]);
@@ -45,35 +45,37 @@ export const PopularView = () => {
                 contentContainerStyle={styles.scrollContainer}
             >
                 {filterDates.map((item) => (
-                    <TouchableOpacity
-                        key={item.id}
-                        style={styles.card}
-                        onPress={() => navigate('ProductsDetails', { id: item.id })}
-                    >
-                        <Image
-                            source={{ uri: item.image }}
-                            style={styles.image}
-                        />
-                        <View style={styles.preco}>
-                            <Text style={styles.priceOrange}>$</Text>
-                            <Text style={styles.priceBlack}>{pattersValues(item.price)}</Text>
-                        </View>
-                        <TouchableOpacity style={styles.favorite}>
-                            <AntDesign name="heart" color='white' size={30} />
+                    <View style={styles.cardContainer}>
+                        <TouchableOpacity
+                            key={item.id}
+                            style={styles.card}
+                            onPress={() => navigate('ProductsDetails', { id: item.id })}
+                        >
+                            <Image
+                                source={{ uri: item.image }}
+                                style={styles.image}
+                            />
+                            <View style={styles.preco}>
+                                <Text style={styles.priceOrange}>$</Text>
+                                <Text style={styles.priceBlack}>{pattersValues(item.price)}</Text>
+                            </View>
+                            <TouchableOpacity style={styles.favorite}>
+                                <AntDesign name="heart" color='white' size={30} />
+                            </TouchableOpacity>
+                            <View style={styles.star}>
+                                <MaterialCommunityIcons name="star" color='#FFC529' />
+                                <Text style={styles.priceBlack}>{item.evaluation}</Text>
+                            </View>
+                            <View style={styles.info}>
+                                <View style={styles.viewName}>
+                                    <Text style={styles.name}>{item.name}</Text>
+                                </View>
+                                <View style={styles.viewDelivey}>
+                                    <Text style={styles.textDelivery}>{item.establishment}</Text>
+                                </View>
+                            </View>
                         </TouchableOpacity>
-                        <View style={styles.star}>
-                            <MaterialCommunityIcons name="star" color='#FFC529' />
-                            <Text style={styles.priceBlack}>{item.evaluation}</Text>
-                        </View>
-                        <View style={styles.info}>
-                            <View style={styles.viewName}>
-                                <Text style={styles.name}>{item.name}</Text>
-                            </View>
-                            <View style={styles.viewDelivey}>
-                                <Text style={styles.textDelivery}>{item.establishment}</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
+                    </View>
                 ))}
             </ScrollView>
         </View>
@@ -82,7 +84,8 @@ export const PopularView = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 200
+        marginBottom: 220,
+        justifyContent: 'center',
     },
     title: {
         fontSize: 22,
@@ -93,15 +96,19 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         gap: 10
     },
-    card: {
-        width: 180,
+    cardContainer: {
+        width: 190,
         borderRadius: 10,
+        backgroundColor: 'white',
+        shadowColor: '#00000037',
+        shadowOffset: { width: 10, height: 5 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 10,
+        marginVertical: 10,
+    },
+    card: {
         overflow: 'hidden',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation: 6,
 
     },
     star: {

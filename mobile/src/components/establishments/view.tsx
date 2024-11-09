@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         elevation: 10,
         // Adiciona um padding para afastar o conteúdo da borda
-        marginVertical: 20,
+        marginVertical: 10,
     },
     textOrange: {
         color: '#FE724C'

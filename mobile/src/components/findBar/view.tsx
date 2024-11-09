@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
     text: {
-        fontSize: 30,
-        fontWeight: '700'
+        fontSize: 40,
+        fontWeight: '700',
+        padding: 5
     },
 });

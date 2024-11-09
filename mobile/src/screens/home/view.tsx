@@ -26,6 +26,6 @@ export const HomeView = () => {
 
 const styles = StyleSheet.create({
     view: {
-        gap: 10
+        gap: 5
     },
 });

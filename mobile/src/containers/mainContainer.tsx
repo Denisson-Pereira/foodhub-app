@@ -14,7 +14,7 @@ export const MainContainer: React.FC<Props> = ({children}: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         paddingTop: 50,
     }
 })

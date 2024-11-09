@@ -17,7 +17,7 @@ export const HeaderHomeView = () => {
             <View>
                 <View style={styles.delivery}>
                     <Text style={styles.text}>Deliver to</Text>
-                    <SimpleLineIcons 
+                    <SimpleLineIcons
                         name={isPress ? "arrow-down" : "arrow-up"}
                         color='#7e7e7e'
                         onPress={open}
@@ -29,10 +29,12 @@ export const HeaderHomeView = () => {
                     </Text>
                 )}
             </View>
-            <Image
+            <View style={styles.containerImage}>
+                <Image
                     source={require('../../assets/user.png')}
                     style={styles.image}
                 />
+            </View>
         </View>
     );
 }
@@ -63,6 +65,18 @@ const styles = StyleSheet.create({
     image: {
         width: 40,
         height: 40,
-        borderRadius: 10,
+        borderRadius: 10
     },
+    containerImage: {
+        shadowColor: '#f89f2a',
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowOffset: { width: 10, height: 5 },
+        shadowOpacity: 0.55,
+        shadowRadius: 10,
+        elevation: 10,
+        borderRadius: 10,
+        width: 50,
+        height: 50
+    }
 });
