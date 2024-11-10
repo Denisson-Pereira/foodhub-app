@@ -15,14 +15,9 @@ public class Establishment extends AbstractEntity {
     private String tag_3;
     private String cover;
     private String image;
+    private String address;
 
-    public String getImage() {
-        return image;
-    }
-    public void setImage(String image) {
-        this.image = image;
-    }
-    public Establishment(String evaluation, String description, String price, String time, String tag_1, String tag_2, String tag_3, String cover, String image) {
+    public Establishment(String evaluation, String description, String price, String time, String tag_1, String tag_2, String tag_3, String cover, String image, String address) {
         this.evaluation = evaluation;
         this.description = description;
         this.price = price;
@@ -32,8 +27,9 @@ public class Establishment extends AbstractEntity {
         this.tag_3 = tag_3;
         this.cover = cover;
         this.image = image;
+        this.address = address;
     }
-    public Establishment(Long id, String name, String evaluation, String description, String price, String time, String tag_1, String tag_2, String tag_3, String cover, String image) {
+    public Establishment(Long id, String name, String evaluation, String description, String price, String time, String tag_1, String tag_2, String tag_3, String cover, String image, String address) {
         super(id, name);
         this.evaluation = evaluation;
         this.description = description;
@@ -44,6 +40,7 @@ public class Establishment extends AbstractEntity {
         this.tag_3 = tag_3;
         this.cover = cover;
         this.image = image;
+        this.address = address;
     }
     public String getEvaluation() {
         return evaluation;
@@ -92,5 +89,17 @@ public class Establishment extends AbstractEntity {
     }
     public void setCover(String cover) {
         this.cover = cover;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
     }
 }
