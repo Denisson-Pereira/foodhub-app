@@ -40,7 +40,7 @@ export const EstablishmentView = () => {
             >
                 {establishment.map((item) => (
                     <View key={item.id} style={styles.cardContainer}>
-                        <TouchableOpacity style={styles.card}>
+                        <TouchableOpacity style={styles.card} onPress={() => navigate('EstablishmentsDetails', { id: item.id })}>
                             <Image
                                 source={{ uri: item.cover }}
                                 style={styles.image}

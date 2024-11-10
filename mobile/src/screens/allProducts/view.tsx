@@ -7,8 +7,10 @@ import { useAllProductsViewModel } from "./viewModel";
 import { useNavigate } from "../../hooks/useNavigate";
 import { pattersValues } from "../../helpers/pattersValues";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import { useFoodHubContext } from "../../context";
 
 export const AllProductsView = () => {
+    const { favorites, toggleFavorite } = useFoodHubContext();
     const { products, setProducts } = useAllProductsViewModel();
     const { navigate } = useNavigate();
 
@@ -43,8 +45,8 @@ export const AllProductsView = () => {
                             <Text style={styles.priceOrange}>$</Text>
                             <Text style={styles.priceBlack}>{pattersValues(item.price)}</Text>
                         </View>
-                        <TouchableOpacity style={styles.favorite}>
-                            <AntDesign name="heart" color='white' size={30} />
+                        <TouchableOpacity style={styles.favorite} onPress={() => toggleFavorite(item)}>
+                            <AntDesign name={favorites.some(fav => fav.id === item.id) ? 'heart' : 'hearto'} color={favorites.some(fav => fav.id === item.id) ? colors.orange : 'white'} size={30} />
                         </TouchableOpacity>
                         <View style={styles.star}>
                             <Text style={styles.priceBlack}>{item.evaluation}</Text>

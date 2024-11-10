@@ -2,7 +2,7 @@ import { useFoodHubContext } from "../context";
 import { TabRoutes } from "./tab.routes";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { WelcomeView, LoginView, SignUpView, AllProductsView, AllEstablishmentView } from "../screens";
+import { WelcomeView, LoginView, SignUpView, AllProductsView, AllEstablishmentView, EstablishmentDetailsView } from "../screens";
 import StackRoutes from "./stack.routes";
 import { ProductsDetails } from "../screens/productsDetails/view";
 
@@ -20,6 +20,7 @@ export default function Routes() {
                         <Stack.Screen name="ProductsDetails" component={ProductsDetails} />
                         <Stack.Screen name="AllProducts" component={AllProductsView} />
                         <Stack.Screen name="AllEstablishments" component={AllEstablishmentView} />
+                        <Stack.Screen name="EstablishmentsDetails" component={EstablishmentDetailsView} />
 
                     </>
                 ) : (
