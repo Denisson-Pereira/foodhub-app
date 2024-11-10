@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { CartView, FavoriteView, HomeView, MapView, ProfileView } from "../screens";
+import { CartView, FavoriteView, HomeView, MapViewScreen, ProfileView } from "../screens";
 import { useFoodHubContext } from "../context";
 import { StyleSheet, Text, View } from "react-native";
 import { colors } from "../constants/colors";
@@ -32,7 +32,7 @@ export const TabRoutes = () => {
 
             <Tab.Screen
                 name='mapView'
-                component={MapView}
+                component={MapViewScreen}
                 options={{
                     tabBarIcon: ({ color }) => <MaterialCommunityIcons name='map-marker' color={color} size={30} />
                 }}
