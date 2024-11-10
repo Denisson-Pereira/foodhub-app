@@ -1,13 +1,16 @@
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, Image } from "react-native";
 import { abstractGetService } from "../../services/abstractGetService";
 import { IProduct } from "../../models/IProduct";
+import { useNavigate } from "../../hooks/useNavigate";
 
 export const FindBarView = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>(""); 
     const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+
+    const { navigate } = useNavigate();
 
     useEffect(() => {
         async function fetchProducts() {
@@ -50,9 +53,19 @@ export const FindBarView = () => {
             <ScrollView style={styles.productList}>
                 {searchTerm !== "" && filteredProducts.length > 0 ? (
                     filteredProducts.map((item) => (
-                        <TouchableOpacity key={item.id} style={styles.productContainer}>
-                            <Text style={styles.productName}>{item.name}</Text>
-                            <Text>{item.description}</Text>
+                        <TouchableOpacity 
+                            key={item.id} 
+                            style={styles.productContainer}
+                            onPress={() => navigate('ProductsDetails', { id: item.id })}
+                        >
+                            <Image 
+                                source={{ uri: item.image }} 
+                                style={styles.img}
+                            />
+                            <View>
+                                <Text style={styles.productName}>{item.name}</Text>
+                                <Text>{item.description}</Text>
+                            </View>
                         </TouchableOpacity>
                     ))
                 ) : (
@@ -99,6 +112,8 @@ const styles = StyleSheet.create({
         padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#EFEFEF',
+        flexDirection: 'row',
+        gap: 10
     },
     productName: {
         fontSize: 18,
@@ -114,4 +129,9 @@ const styles = StyleSheet.create({
     productList: {
         marginTop: 10,
     },
+    img: {
+        width: 50,
+        height: 50,
+        borderRadius: 10
+    }
 });
