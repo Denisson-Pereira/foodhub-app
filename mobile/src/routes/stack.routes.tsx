@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { HomeView, LoginView, WelcomeView } from "../screens";
+import { HomeView, LoginView, ProfileView, WelcomeView } from "../screens";
 import { ProductsDetails } from "../screens/productsDetails/view";
 
 const Stack = createStackNavigator();
@@ -32,6 +32,7 @@ export default function StackRoutes() {
                 component={HomeView}
                 options={{ headerShown: false }}
             />
+
         </Stack.Navigator>
     )
 }

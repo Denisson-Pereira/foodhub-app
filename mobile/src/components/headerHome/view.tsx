@@ -1,11 +1,13 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CustomButtonUp } from "../../custom/customButtonUp";
 import { MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { useHeaderHomeViewModel } from "./viewModel";
+import { useNavigate } from "../../hooks/useNavigate";
 
 export const HeaderHomeView = () => {
 
     const { isPress, setIsPress, open } = useHeaderHomeViewModel();
+    const { navigate } = useNavigate();
 
     return (
         <View style={styles.viewContainer}>
@@ -29,12 +31,15 @@ export const HeaderHomeView = () => {
                     </Text>
                 )}
             </View>
-            <View style={styles.containerImage}>
+            <TouchableOpacity 
+                style={styles.containerImage}
+                onPress={() => navigate('profileView')}
+            >
                 <Image
                     source={require('../../assets/user.png')}
                     style={styles.image}
                 />
-            </View>
+            </TouchableOpacity>
         </View>
     );
 }
