@@ -22,7 +22,7 @@ export const EstablishmentDetailsView = () => {
         <View>
             {establishment ? (
                 <View>
-                    <Text>{establishment.name}</Text>
+                    <Text>{establishment.address}</Text>
                 </View>
             ) : (
                 <View>

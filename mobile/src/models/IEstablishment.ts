@@ -10,4 +10,5 @@ export interface IEstablishment {
     tag_3: string
     cover: string
     image: string
+    address: string
 }
