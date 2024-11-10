@@ -39,7 +39,7 @@ export const FindBarView = () => {
                         style={styles.input}
                         placeholder="Find for food or restaurant..."
                         value={searchTerm}
-                        onChangeText={setSearchTerm} // Atualiza o estado com o texto digitado
+                        onChangeText={setSearchTerm} 
                     />
                 </View>
                 <TouchableOpacity>
@@ -112,6 +112,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     productList: {
-        marginTop: 20,
+        marginTop: 10,
     },
 });

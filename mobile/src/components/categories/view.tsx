@@ -39,8 +39,7 @@ export const CategoriesView = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        
+        flexDirection: 'row',        
     },
     view: {
         justifyContent: 'center',
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         elevation: 10,
         // Adiciona um padding para afastar o conteúdo da borda
-        marginVertical: 20,
+        marginBottom: 20,
         borderRadius: 50
     },
     img: {
