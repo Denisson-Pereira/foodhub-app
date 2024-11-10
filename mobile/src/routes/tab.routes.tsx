@@ -1,10 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { CartView, FavoriteView, HomeView, MapView, ProfileView } from "../screens";
+import { useFoodHubContext } from "../context";
+import { StyleSheet, Text, View } from "react-native";
+import { colors } from "../constants/colors";
 
 const Tab = createBottomTabNavigator();
 
 export const TabRoutes = () => {
+    const { quantidadeCart } = useFoodHubContext();
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -37,7 +42,18 @@ export const TabRoutes = () => {
                 name="cartView"
                 component={CartView}
                 options={{
-                    tabBarIcon: ({ color, size }) => <FontAwesome5 name='shopping-bag' color={color} size={size} />
+                    tabBarIcon: ({ color, size }) => (
+                        <View style={styles.iconContainer}>
+                            <FontAwesome5 name='shopping-bag' color={color} size={size} />
+                                {parseInt(quantidadeCart) == 0 ? (
+                                    <></>
+                                ) : (
+                                    <View style={styles.badgeContainer}>
+                                        <Text style={styles.badgeText}>{quantidadeCart}</Text>
+                                    </View>
+                                )}
+                        </View>
+                    ),
                 }}
             />
 
@@ -61,3 +77,25 @@ export const TabRoutes = () => {
         </Tab.Navigator>
     );
 };
+
+const styles = StyleSheet.create({
+    iconContainer: {
+        position: 'relative',
+    },
+    badgeContainer: {
+        position: 'absolute',
+        right: -6,
+        top: -3,
+        backgroundColor: '#f89f2a',
+        borderRadius: 5,
+        width: 16,
+        height: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    badgeText: {
+        color: 'white',
+        fontSize: 10,
+        fontWeight: 'bold',
+    },
+});
