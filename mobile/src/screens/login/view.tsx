@@ -69,10 +69,6 @@ export const LoginView = () => {
                         </View>
                     </View>
                 </SafeAreaView>
-                <Image
-                    source={require('../../assets/signin.png')}
-                    style={styles.image}
-                />
             </MainContainer>
         </BgCircleContainer>
     );
@@ -85,10 +81,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     viewContainer: {
-        gap: 30,
+        gap: 40,
     },
     viewField: {
-        gap: 10,
+        gap: 15,
     },
     text: {
         color: '#9e9e9e',
@@ -98,7 +94,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 40,
         fontWeight: '700',
-        marginTop: 100,
         marginBottom: 50,
     },
     touchable: {
@@ -113,9 +108,6 @@ const styles = StyleSheet.create({
     textBlack: {
         color: '#7e7e7e',
         fontWeight: '500',
-    },
-    image: {
-        marginTop: 70
     },
     viewSignUp: {
         flexDirection: 'row',

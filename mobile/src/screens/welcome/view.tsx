@@ -3,7 +3,7 @@ import { useWelcomeViewModel } from "./viewModel";
 import { MainContainer } from "../../containers";
 
 export const WelcomeView = () => {
-    const { login } = useWelcomeViewModel();
+    const { login, signUp } = useWelcomeViewModel();
 
     return (
         <ImageBackground
@@ -20,7 +20,7 @@ export const WelcomeView = () => {
                     </TouchableOpacity>
                     <View style={styles.signInField}>
                         <Text style={styles.text}>Already have an account?</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={signUp}>
                             <Text style={styles.underlineText}>Sign In</Text>
                         </TouchableOpacity>
                     </View>

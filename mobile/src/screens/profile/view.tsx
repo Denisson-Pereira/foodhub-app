@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
     viewIcon: {
         backgroundColor: 'white',
-        padding: 7,
+        padding: 8,
         borderRadius: 50,
         position: 'absolute',
         bottom: -7,
@@ -113,7 +113,16 @@ const styles = StyleSheet.create({
     containerBtn: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 30,
+        marginBottom: 30,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.5,
+        elevation: 5,
     },
     containerInput: {
         justifyContent: 'center',
@@ -140,9 +149,9 @@ const styles = StyleSheet.create({
         color: colors.black,
     },
     btn: {
-        width: 170,
+        width: 260,
+        height: 70,
         backgroundColor: colors.orange,
-        padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',

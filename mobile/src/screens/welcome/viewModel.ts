@@ -8,5 +8,9 @@ export const useWelcomeViewModel = (): IWelcomeModel => {
         navigate('login');
     }
 
-    return {login}
+    const signUp = () => {
+        navigate('register');
+    }
+
+    return { login, signUp }
 }

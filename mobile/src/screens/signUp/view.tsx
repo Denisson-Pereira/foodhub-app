@@ -78,10 +78,6 @@ export const SignUpView = () => {
                         </View>
                     </View>
                 </SafeAreaView>
-                <Image
-                    source={require('../../assets/signup.png')}
-                    style={styles.image}
-                />
             </MainContainer>
         </BgCircleContainer>
     );
@@ -91,14 +87,14 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 40,
         fontWeight: '700',
-        marginTop: 100,
+        marginTop: 10,
         marginBottom: 50,
     },
     viewContainer: {
         gap: 30,
     },
     viewField: {
-        gap: 10,
+        gap: 15,
     },
     text: {
         color: '#9e9e9e',
@@ -123,10 +119,6 @@ const styles = StyleSheet.create({
         color: '#7e7e7e',
         fontWeight: '500',
     },
-    image: {
-        marginTop: 70
-    },
     register: {
-        marginTop: 20,
     }
 });
