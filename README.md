@@ -311,4 +311,3 @@ No desenvolvimento deste projeto, foram utilizados os seguintes editores:
 
 MARTIN, S. R. **Código Limpo: Habilidades Práticas do Agile Software**. Rio de Janeiro: Alta Books, 2011.
 MARTIN, S. R. **Arquitetura Limpa: O Gui do Artesão para Estrutura e Design de Software**. Rio de Janeiro: Alta Books, 2018.
-
