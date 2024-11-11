@@ -32,7 +32,8 @@
 7. [Edição](#-edição)   
 8. [Aguarde! Ainda Não Terminou!](#-aguarde-ainda-não-terminou)
 9. [Licença](#-licença)
-10. [Autor](#-autor)
+10. [Design Credits](#-design-credits)
+11. [Autor](#-autor)
 
 # 📑 Sobre o projeto 
 
@@ -298,6 +299,9 @@ No desenvolvimento deste projeto, foram utilizados os seguintes editores:
 
 >Por fim, gostaríamos de ressaltar que este projeto é aberto a contribuições de qualquer pessoa interessada em colaborar. Se você tem ideias, sugestões ou melhorias para oferecer, sinta-se à vontade para participar do desenvolvimento do projeto. Juntos, podemos criar algo incrível e beneficiar a comunidade de forma colaborativa.
 
+# 🎨 Design Credits
+
+[FoodHub](https://www.figma.com/community/file/1016293188579696778/food-app-foodhub-community) Figma Community Design
 
 # 📜 Licença
 
