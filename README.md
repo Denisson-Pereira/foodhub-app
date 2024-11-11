@@ -281,7 +281,7 @@ Dê uma espiada no nosso projeto em funcionamento e esclareça todas as suas dú
 
 ## 💻 Software em Ação
 
-![Mob 1](./github/software.gif) 
+![Mob 1](./github/action.gif) 
 
 
 # 📺 Edição
@@ -290,6 +290,7 @@ No desenvolvimento deste projeto, foram utilizados os seguintes editores:
 
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 ![MySQL Workbench](https://img.shields.io/badge/MySQL_Workbench-005C6C.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 # 🚨 Aguarde! Ainda não terminou!
 
@@ -312,5 +313,3 @@ Denisson Pereira Santos
 <a href="https://github.com/Denisson-Pereira" target="_blank"><img src="https://img.shields.io/badge/GitHub-%23181717?style=for-the-badge&logo=github&logoColor=white&logoWidth=15&labelColor=black"  target="_blank"></a> 
 <a href="https://www.instagram.com/denisson_pereira1?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
 </div>&nbsp;&nbsp;
-
-![Web 2](./github/banner2.gif) 
