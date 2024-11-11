@@ -33,7 +33,7 @@
 8. [Aguarde! Ainda Não Terminou!](#-aguarde-ainda-não-terminou)
 9. [Licença](#-licença)
 10. [Design Credits](#-design-credits)
-11. [Autor](#-autor)
+11. [Referências Bibliográficas](#-referências-bibliográficas)
 
 # 📑 Sobre o projeto 
 
@@ -307,13 +307,10 @@ No desenvolvimento deste projeto, foram utilizados os seguintes editores:
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/Denisson-Pereira/foodhub-app/blob/main/LICENSE) 
 
-# 📝 Autor 
+# 📝 Referências Bibliográficas  
 
 Denisson Pereira Santos
 
-<div align='center'> 
-<a href="https://www.linkedin.com/in/denisson-pereira" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"  target="_blank"></a> 
-<a href="https://denissonpereira.com" target="_blank"><img src="https://img.shields.io/badge/Meu%20Site-%2333cc33?style=for-the-badge&logo=fontawesome&logoColor=white&logoWidth=15&labelColor=black"  target="_blank"></a> 
-<a href="https://github.com/Denisson-Pereira" target="_blank"><img src="https://img.shields.io/badge/GitHub-%23181717?style=for-the-badge&logo=github&logoColor=white&logoWidth=15&labelColor=black"  target="_blank"></a> 
-<a href="https://www.instagram.com/denisson_pereira1?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
-</div>&nbsp;&nbsp;
+MARTIN, S. R. **Código Limpo: Habilidades Práticas do Agile Software**. Rio de Janeiro: Alta Books, 2011.
+MARTIN, S. R. **Arquitetura Limpa: O Gui do Artesão para Estrutura e Design de Software**. Rio de Janeiro: Alta Books, 2018.
+
