@@ -305,7 +305,7 @@ No desenvolvimento deste projeto, foram utilizados os seguintes editores:
 
 # 📜 Licença
 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/Denisson-Pereira/clean-architecture-store/blob/main/LICENSE) 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/Denisson-Pereira/foodhub-app/blob/main/LICENSE) 
 
 # 📝 Autor 
 
