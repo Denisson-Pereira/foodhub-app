@@ -82,8 +82,15 @@ O padrão **MVVM** (*Model-View-ViewModel*) foi criado para resolver a complexid
 [![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/)
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=white)
+![JDBC](https://img.shields.io/badge/JDBC-007396?style=for-the-badge&logo=java&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white)
 
-O backend deste projeto foi desenvolvido com o objetivo de fornecer dados para uma loja de comidas, além de garantir uma autenticação segura para os usuários. Utilizando **Java** e **Spring Boot**, a aplicação oferece uma estrutura robusta e escalável, permitindo gerenciar produtos, categorias e usuários de forma eficiente. A documentação da **API** foi realizada utilizando o **Swagger**, facilitando a compreensão e a interação com os endpoints disponíveis, promovendo uma experiência de desenvolvimento mais fluida e organizada.
+
+O backend deste projeto foi desenvolvido com o objetivo de fornecer dados para uma loja de comidas, além de garantir uma autenticação segura para os usuários. Utilizando **Java** e **Spring Boot**, com o **JDBC**, a aplicação oferece uma estrutura robusta e escalável, permitindo gerenciar produtos, categorias e usuários de forma eficiente. A documentação da **API** foi realizada utilizando o **Swagger**, facilitando a compreensão e a interação com os endpoints disponíveis, promovendo uma experiência de desenvolvimento mais fluida e organizada.
+
+# 🚨 Atenção!
+
+>O Firebase foi utilizado exclusivamente para upload de imagens, enquanto todo o sistema de autenticação de usuários foi implementado com Spring Boot.
 
 ### 🏢 Princípios SOLID
 
@@ -135,12 +142,6 @@ O banco de dados `foodhub` contém três tabelas principais: `category`, `produc
 | name    | varchar(255) | Nome da categoria                       |
 | image   | varchar(255) | URL da imagem da categoria              |
 
-**Exemplo de Dados**:
-
-| id | name    | image |
-|----|---------|-------|
-| 1  | Burger  | [Link](https://firebasestorage.googleapis.com/v0/b/foodhub-ba95f.appspot.com/o/categorias%2FMask%20Group.png?alt=media&token=d42d4657-9af1-4ac4-84e6-a2774c183cfd) |
-| 2  | Donat   | [Link](https://firebasestorage.googleapis.com/v0/b/foodhub-ba95f.appspot.com/o/categorias%2FMask%20Group%20(1).png?alt=media&token=d6633fe5-d259-4a29-a53c-908de806be2e) |
 
 ### Tabela: product
 
@@ -155,14 +156,6 @@ O banco de dados `foodhub` contém três tabelas principais: `category`, `produc
 | establishment   | varchar(255) | Estabelecimento onde o produto está disponível |
 | image          | varchar(255) | URL da imagem do produto           |
 
-**Exemplo de Dados**:
-
-| id | name                       | evaluation | description                                      | price | category | establishment | image                                                                                                         |
-|----|----------------------------|------------|--------------------------------------------------|-------|----------|---------------|---------------------------------------------------------------------------------------------------------------|
-| 1  | Margherita Bliss           | 5          | A classic Margherita with fresh tomatoes...      | 49999 | pizza    | Subway        | [Link](https://firebasestorage.googleapis.com/v0/b/foodhub-ba95f.appspot.com/o/estabelecimentos%2FRed%20Pizza.png?alt=media&token=66048747-3137-49d2-849e-e7118683761a) |
-| 2  | Pepperoni Supreme          | 4          | Pepperoni pizza loaded with spicy slices...      | 3999  | pizza    | Subway        | [Link](https://firebasestorage.googleapis.com/v0/b/foodhub-ba95f.appspot.com/o/estabelecimentos%2FChicken%20wailan.png?alt=media&token=21eb816b-f5b7-42a7-b134-b8144cb95ff6) |
-| 3  | BBQ Chicken Delight        | 3          | Enjoy a BBQ Chicken pizza with tangy sauce...   | 1999  | pizza    | Jimmy John's  | [Link](https://firebasestorage.googleapis.com/v0/b/foodhub-ba95f.appspot.com/o/estabelecimentos%2FRed%20Pizza.png?alt=media&token=66048747-3137-49d2-849e-e7118683761a) |
-| 4  | Veggie Garden Extravaganza | 2          | Indulge in a Veggie Delight with mushrooms...    | 4499  | pizza    | Jimmy John's  | [Link](https://firebasestorage.googleapis.com/v0/b/foodhub-ba95f.appspot.com/o/estabelecimentos%2FChicken%20wailan.png?alt=media&token=21eb816b-f5b7-42a7-b134-b8144cb95ff6) |
 
 ### Tabela: user
 
@@ -172,13 +165,6 @@ O banco de dados `foodhub` contém três tabelas principais: `category`, `produc
 | name    | varchar(255) | Nome do usuário                         |
 | login   | varchar(255) | Login do usuário                        |
 | password| varchar(255) | Senha do usuário                       |
-
-**Exemplo de Dados**:
-
-| id | name     | login    | password   |
-|----|----------|----------|------------|
-| 1  | Pereira     | denisson | $2a$10$T8ASa58EC2GxXAXePudFMOagO844O6zH6Y5dR0i1GDmKa4Il/1TFO |
-| 2  | denisson | den      | $2a$10$8n5UdTlmQTbYHOb//j9vMucj9LEmXGSgsdGRUqsXKNBn0MFYFli96 |
 
 
 ## • Frontend
