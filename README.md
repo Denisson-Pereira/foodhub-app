@@ -92,6 +92,13 @@ O backend deste projeto foi desenvolvido com o objetivo de fornecer dados para u
 
 >O Firebase foi utilizado exclusivamente para upload de imagens, enquanto todo o sistema de autenticação de usuários foi implementado com Spring Boot.
 
+>Uso de Variáveis de Ambiente:
+
+```
+${USERNAME_BANCO}
+${SENHA_BANCO}
+```
+
 ### 🏢 Princípios SOLID
 
 A arquitetura deste projeto é fortemente influenciada pelos princípios SOLID, que promovem um design de software limpo e sustentável. Abaixo estão os princípios observados na aplicação:
